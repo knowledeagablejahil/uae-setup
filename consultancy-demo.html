@@ -1,0 +1,494 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>UAE Business Setup - Consultancy Website</title>
+    <script crossorigin src="https://unpkg.com/react@18/umd/react.production.min.js"></script>
+    <script crossorigin src="https://unpkg.com/react-dom@18/umd/react-dom.production.min.js"></script>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <script src="https://unpkg.com/@tabler/icons@latest/icons-react/dist/tabler-icons-react.min.js"></script>
+</head>
+<body>
+    <div id="root"></div>
+
+    <script type="module">
+        import React, { useState } from 'https://esm.sh/react@18.2.0';
+        import ReactDOM from 'https://esm.sh/react-dom@18.2.0';
+
+        function ConsultancyWebsite() {
+            const [calcStep, setCalcStep] = useState(1);
+            const [calcData, setCalcData] = useState({
+                serviceType: 'mainland',
+                businessType: 'simple',
+                timeline: 'standard'
+            });
+            const [showLeadForm, setShowLeadForm] = useState(false);
+            const [formData, setFormData] = useState({ name: '', email: '', whatsapp: '' });
+            const [formSubmitted, setFormSubmitted] = useState(false);
+
+            const pricing = {
+                mainland: { base: 2500, label: 'Mainland Setup', time: '7-10 days' },
+                freezone: { base: 3500, label: 'Free Zone Setup', time: '5-7 days' },
+                offshore: { base: 4500, label: 'Offshore Setup', time: '10-14 days' },
+                bank: { base: 800, label: 'Bank Account Opening', time: '3-5 days' },
+                vat: { base: 1200, label: 'VAT & Accounting Setup', time: '2-3 days' },
+                visa: { base: 5000, label: 'Golden Visa Support', time: '15-30 days' }
+            };
+
+            const services = [
+                {
+                    id: 'mainland',
+                    title: 'Mainland Setup',
+                    description: 'Perfect for retail, services, and small businesses',
+                    features: ['No restrictions on business activities', 'Local office required', 'UAE national sponsorship'],
+                    price: pricing.mainland.base,
+                    time: pricing.mainland.time,
+                    ideal: 'Entrepreneurs starting their first UAE business'
+                },
+                {
+                    id: 'freezone',
+                    title: 'Free Zone Setup',
+                    description: 'Tax benefits and 100% foreign ownership',
+                    features: ['0% corporate tax for 50 years', '100% foreign ownership', 'Import/export advantages'],
+                    price: pricing.freezone.base,
+                    time: pricing.freezone.time,
+                    ideal: 'Companies wanting tax optimization'
+                },
+                {
+                    id: 'offshore',
+                    title: 'Offshore Setup',
+                    description: 'International business structure',
+                    features: ['Privacy & confidentiality', 'Asset protection', 'International operations'],
+                    price: pricing.offshore.base,
+                    time: pricing.offshore.time,
+                    ideal: 'Global businesses needing UAE presence'
+                },
+                {
+                    id: 'bank',
+                    title: 'Bank Account Opening',
+                    description: 'Complete banking solutions',
+                    features: ['Trade finance options', 'Multi-currency accounts', 'Business credit facilities'],
+                    price: pricing.bank.base,
+                    time: pricing.bank.time,
+                    ideal: 'All business types'
+                },
+                {
+                    id: 'vat',
+                    title: 'VAT & Accounting',
+                    description: 'Compliance and financial management',
+                    features: ['VAT registration & filing', 'Bookkeeping & audit', 'Tax optimization'],
+                    price: pricing.vat.base,
+                    time: pricing.vat.time,
+                    ideal: 'Established companies'
+                },
+                {
+                    id: 'visa',
+                    title: 'Golden Visa Support',
+                    description: 'Long-term residency program',
+                    features: ['10-year residency', 'Family sponsorship', 'Real estate investment option'],
+                    price: pricing.visa.base,
+                    time: pricing.visa.time,
+                    ideal: 'High-net-worth individuals'
+                }
+            ];
+
+            const calculateCost = () => {
+                let baseCost = pricing[calcData.serviceType].base;
+                if (calcData.businessType === 'complex') baseCost += 1000;
+                if (calcData.timeline === 'urgent') baseCost += 500;
+                return baseCost;
+            };
+
+            const handleWhatsAppClick = () => {
+                const message = encodeURIComponent(`Hi! I'm interested in learning more about your UAE business setup services.`);
+                window.open(`https://wa.me/971501234567?text=${message}`, '_blank');
+            };
+
+            const handleFormSubmit = (e) => {
+                e.preventDefault();
+                setFormSubmitted(true);
+                setTimeout(() => {
+                    setShowLeadForm(false);
+                    setFormSubmitted(false);
+                    setFormData({ name: '', email: '', whatsapp: '' });
+                }, 2000);
+            };
+
+            return React.createElement('div', { className: 'w-full bg-white' },
+                // HEADER
+                React.createElement('header', { className: 'fixed top-0 w-full bg-white shadow-sm z-50' },
+                    React.createElement('div', { className: 'max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-4 flex justify-between items-center' },
+                        React.createElement('div', { className: 'text-2xl font-bold text-blue-600' }, 'UAE Business Setup'),
+                        React.createElement('button', 
+                            { onClick: handleWhatsAppClick, className: 'flex items-center gap-2 bg-green-500 text-white px-4 py-2 rounded-lg hover:bg-green-600 transition' },
+                            '💬 WhatsApp'
+                        )
+                    )
+                ),
+
+                // HERO SECTION
+                React.createElement('section', { className: 'pt-32 pb-20 px-4 bg-gradient-to-br from-blue-50 to-indigo-50' },
+                    React.createElement('div', { className: 'max-w-4xl mx-auto text-center' },
+                        React.createElement('h1', { className: 'text-5xl font-bold text-gray-900 mb-6' },
+                            'Start Your UAE Business in Days, Not Months'
+                        ),
+                        React.createElement('p', { className: 'text-xl text-gray-600 mb-8' },
+                            'Complete business setup, banking, and visa support. Transparent pricing. No hidden fees.'
+                        ),
+                        React.createElement('div', { className: 'flex flex-col sm:flex-row gap-4 justify-center mb-12' },
+                            React.createElement('button', 
+                                { onClick: () => setShowLeadForm(true), className: 'bg-blue-600 text-white px-8 py-4 rounded-lg text-lg font-semibold hover:bg-blue-700 transition shadow-lg' },
+                                'Get Free Consultation'
+                            ),
+                            React.createElement('button', 
+                                { onClick: handleWhatsAppClick, className: 'border-2 border-blue-600 text-blue-600 px-8 py-4 rounded-lg text-lg font-semibold hover:bg-blue-50 transition' },
+                                'Chat on WhatsApp'
+                            )
+                        ),
+                        React.createElement('div', { className: 'grid grid-cols-3 gap-4 text-center' },
+                            React.createElement('div', {},
+                                React.createElement('div', { className: 'text-3xl font-bold text-green-600' }, '500+'),
+                                React.createElement('div', { className: 'text-sm text-gray-600' }, 'Successful Setups')
+                            ),
+                            React.createElement('div', {},
+                                React.createElement('div', { className: 'text-3xl font-bold text-green-600' }, '7-10'),
+                                React.createElement('div', { className: 'text-sm text-gray-600' }, 'Days Average')
+                            ),
+                            React.createElement('div', {},
+                                React.createElement('div', { className: 'text-3xl font-bold text-green-600' }, '100%'),
+                                React.createElement('div', { className: 'text-sm text-gray-600' }, 'Client Satisfaction')
+                            )
+                        )
+                    )
+                ),
+
+                // COST CALCULATOR
+                React.createElement('section', { className: 'py-20 px-4 bg-white' },
+                    React.createElement('div', { className: 'max-w-3xl mx-auto' },
+                        React.createElement('h2', { className: 'text-3xl font-bold text-center mb-4' }, 'Know Your Exact Cost'),
+                        React.createElement('p', { className: 'text-center text-gray-600 mb-12' }, 'No surprises. No hidden fees.'),
+                        React.createElement('div', { className: 'bg-gray-50 p-8 rounded-lg' },
+                            calcStep === 1 && React.createElement('div', {},
+                                React.createElement('label', { className: 'block text-sm font-semibold text-gray-700 mb-4' }, 'What service do you need?'),
+                                React.createElement('div', { className: 'grid grid-cols-1 sm:grid-cols-2 gap-3' },
+                                    Object.entries(pricing).map(([key, val]) =>
+                                        React.createElement('button',
+                                            { 
+                                                key: key,
+                                                onClick: () => { setCalcData({...calcData, serviceType: key}); setCalcStep(2); },
+                                                className: 'p-4 border-2 border-gray-200 rounded-lg hover:border-blue-600 hover:bg-blue-50 transition text-left'
+                                            },
+                                            React.createElement('div', { className: 'font-semibold text-gray-900' }, val.label),
+                                            React.createElement('div', { className: 'text-sm text-gray-500' }, `From AED ${val.base}`)
+                                        )
+                                    )
+                                )
+                            ),
+                            calcStep === 2 && React.createElement('div', {},
+                                React.createElement('label', { className: 'block text-sm font-semibold text-gray-700 mb-4' }, 'Business complexity?'),
+                                React.createElement('div', { className: 'space-y-3' },
+                                    React.createElement('button',
+                                        { 
+                                            onClick: () => { setCalcData({...calcData, businessType: 'simple'}); setCalcStep(3); },
+                                            className: 'w-full p-4 border-2 border-gray-200 rounded-lg hover:border-blue-600 hover:bg-blue-50 transition text-left'
+                                        },
+                                        React.createElement('div', { className: 'font-semibold text-gray-900' }, 'Simple (Sole proprietor)'),
+                                        React.createElement('div', { className: 'text-sm text-gray-500' }, 'No additional cost')
+                                    ),
+                                    React.createElement('button',
+                                        { 
+                                            onClick: () => { setCalcData({...calcData, businessType: 'complex'}); setCalcStep(3); },
+                                            className: 'w-full p-4 border-2 border-gray-200 rounded-lg hover:border-blue-600 hover:bg-blue-50 transition text-left'
+                                        },
+                                        React.createElement('div', { className: 'font-semibold text-gray-900' }, 'Complex (Multiple activities)'),
+                                        React.createElement('div', { className: 'text-sm text-gray-500' }, '+AED 1,000')
+                                    )
+                                )
+                            ),
+                            calcStep === 3 && React.createElement('div', {},
+                                React.createElement('label', { className: 'block text-sm font-semibold text-gray-700 mb-4' }, 'Timeline preference?'),
+                                React.createElement('div', { className: 'space-y-3' },
+                                    React.createElement('button',
+                                        { 
+                                            onClick: () => { setCalcData({...calcData, timeline: 'standard'}); setCalcStep(4); },
+                                            className: 'w-full p-4 border-2 border-gray-200 rounded-lg hover:border-blue-600 hover:bg-blue-50 transition text-left'
+                                        },
+                                        React.createElement('div', { className: 'font-semibold text-gray-900' }, 'Standard (7-10 days)'),
+                                        React.createElement('div', { className: 'text-sm text-gray-500' }, 'No additional cost')
+                                    ),
+                                    React.createElement('button',
+                                        { 
+                                            onClick: () => { setCalcData({...calcData, timeline: 'urgent'}); setCalcStep(4); },
+                                            className: 'w-full p-4 border-2 border-gray-200 rounded-lg hover:border-blue-600 hover:bg-blue-50 transition text-left'
+                                        },
+                                        React.createElement('div', { className: 'font-semibold text-gray-900' }, 'Urgent (2-3 days)'),
+                                        React.createElement('div', { className: 'text-sm text-gray-500' }, '+AED 500')
+                                    )
+                                )
+                            ),
+                            calcStep === 4 && React.createElement('div', { className: 'text-center' },
+                                React.createElement('div', { className: 'bg-blue-50 p-8 rounded-lg mb-6' },
+                                    React.createElement('div', { className: 'text-sm text-gray-600 mb-2' }, 'Your Total Cost'),
+                                    React.createElement('div', { className: 'text-5xl font-bold text-blue-600 mb-2' }, `AED ${calculateCost().toLocaleString()}`),
+                                    React.createElement('div', { className: 'text-gray-600' }, `For ${pricing[calcData.serviceType].label} (${pricing[calcData.serviceType].time})`)
+                                ),
+                                React.createElement('button',
+                                    { 
+                                        onClick: () => { setShowLeadForm(true); setCalcStep(1); },
+                                        className: 'w-full bg-blue-600 text-white px-6 py-3 rounded-lg font-semibold hover:bg-blue-700 transition mb-3'
+                                    },
+                                    'Proceed'
+                                ),
+                                React.createElement('button',
+                                    { 
+                                        onClick: () => setCalcStep(1),
+                                        className: 'w-full border-2 border-gray-200 text-gray-700 px-6 py-3 rounded-lg font-semibold hover:bg-gray-50 transition'
+                                    },
+                                    'Recalculate'
+                                )
+                            )
+                        )
+                    )
+                ),
+
+                // SERVICES SECTION
+                React.createElement('section', { className: 'py-20 px-4 bg-gray-50' },
+                    React.createElement('div', { className: 'max-w-6xl mx-auto' },
+                        React.createElement('h2', { className: 'text-3xl font-bold text-center mb-4' }, 'All Services You Need'),
+                        React.createElement('p', { className: 'text-center text-gray-600 mb-12' }, 'From startup to scale. We cover the entire journey.'),
+                        React.createElement('div', { className: 'grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6' },
+                            services.map(service =>
+                                React.createElement('div', { key: service.id, className: 'bg-white p-6 rounded-lg shadow hover:shadow-lg transition' },
+                                    React.createElement('h3', { className: 'text-xl font-bold text-gray-900 mb-2' }, service.title),
+                                    React.createElement('p', { className: 'text-gray-600 text-sm mb-4' }, service.description),
+                                    React.createElement('div', { className: 'mb-4 pb-4 border-b' },
+                                        React.createElement('div', { className: 'text-2xl font-bold text-blue-600 mb-1' }, `From AED ${service.price.toLocaleString()}`),
+                                        React.createElement('div', { className: 'text-xs text-gray-500' }, service.time)
+                                    ),
+                                    React.createElement('div', { className: 'mb-6' },
+                                        React.createElement('div', { className: 'text-xs font-semibold text-gray-500 mb-3' }, 'IDEAL FOR'),
+                                        React.createElement('p', { className: 'text-sm text-gray-700' }, service.ideal)
+                                    ),
+                                    React.createElement('button',
+                                        { 
+                                            onClick: () => setShowLeadForm(true),
+                                            className: 'w-full border-2 border-blue-600 text-blue-600 px-4 py-2 rounded-lg font-semibold hover:bg-blue-50 transition'
+                                        },
+                                        'Learn More'
+                                    )
+                                )
+                            )
+                        )
+                    )
+                ),
+
+                // WHY US SECTION
+                React.createElement('section', { className: 'py-20 px-4 bg-white' },
+                    React.createElement('div', { className: 'max-w-4xl mx-auto' },
+                        React.createElement('h2', { className: 'text-3xl font-bold text-center mb-12' }, 'Why Choose Us?'),
+                        React.createElement('div', { className: 'grid grid-cols-1 md:grid-cols-2 gap-8' },
+                            React.createElement('div', { className: 'flex gap-4' },
+                                React.createElement('div', { className: 'text-3xl' }, '🛡️'),
+                                React.createElement('div', {},
+                                    React.createElement('h3', { className: 'font-bold text-gray-900 mb-2' }, '100% Transparent'),
+                                    React.createElement('p', { className: 'text-gray-600 text-sm' }, 'No hidden fees. Exact pricing before you commit.')
+                                )
+                            ),
+                            React.createElement('div', { className: 'flex gap-4' },
+                                React.createElement('div', { className: 'text-3xl' }, '📈'),
+                                React.createElement('div', {},
+                                    React.createElement('h3', { className: 'font-bold text-gray-900 mb-2' }, 'Expert Advisors'),
+                                    React.createElement('p', { className: 'text-gray-600 text-sm' }, 'UAE business specialists with 50+ years combined experience.')
+                                )
+                            ),
+                            React.createElement('div', { className: 'flex gap-4' },
+                                React.createElement('div', { className: 'text-3xl' }, '👥'),
+                                React.createElement('div', {},
+                                    React.createElement('h3', { className: 'font-bold text-gray-900 mb-2' }, 'Real Results'),
+                                    React.createElement('p', { className: 'text-gray-600 text-sm' }, '500+ successful setups. Proven process. Measurable outcomes.')
+                                )
+                            ),
+                            React.createElement('div', { className: 'flex gap-4' },
+                                React.createElement('div', { className: 'text-3xl' }, '☎️'),
+                                React.createElement('div', {},
+                                    React.createElement('h3', { className: 'font-bold text-gray-900 mb-2' }, 'Always Available'),
+                                    React.createElement('p', { className: 'text-gray-600 text-sm' }, 'WhatsApp support. Fast responses. Questions answered immediately.')
+                                )
+                            )
+                        )
+                    )
+                ),
+
+                // TESTIMONIALS SECTION
+                React.createElement('section', { className: 'py-20 px-4 bg-gray-50' },
+                    React.createElement('div', { className: 'max-w-4xl mx-auto' },
+                        React.createElement('h2', { className: 'text-3xl font-bold text-center mb-12' }, 'What Clients Say'),
+                        React.createElement('div', { className: 'grid grid-cols-1 md:grid-cols-3 gap-6' },
+                            [
+                                { name: 'Ahmed Al Mansouri', role: 'Tech Startup Founder', text: 'Setup was done in 8 days. Way faster than we expected. Great support throughout.' },
+                                { name: 'Sarah Johnson', role: 'E-commerce Business Owner', text: 'No surprises with pricing. They explained everything clearly. Exactly what we needed.' },
+                                { name: 'Mohammed Hassan', role: 'Investment Company Manager', text: 'Professional team. Knew all the details about free zone regulations. Highly recommend.' }
+                            ].map((testimonial, i) =>
+                                React.createElement('div', { key: i, className: 'bg-white p-6 rounded-lg' },
+                                    React.createElement('div', { className: 'flex gap-1 mb-4' },
+                                        [...Array(5)].map((_, j) => React.createElement('span', { key: j, className: 'text-yellow-400' }, '★'))
+                                    ),
+                                    React.createElement('p', { className: 'text-gray-700 mb-4 text-sm' }, `"${testimonial.text}"`),
+                                    React.createElement('div', {},
+                                        React.createElement('div', { className: 'font-semibold text-gray-900' }, testimonial.name),
+                                        React.createElement('div', { className: 'text-xs text-gray-500' }, testimonial.role)
+                                    )
+                                )
+                            )
+                        )
+                    )
+                ),
+
+                // FAQ SECTION
+                React.createElement('section', { className: 'py-20 px-4 bg-white' },
+                    React.createElement('div', { className: 'max-w-3xl mx-auto' },
+                        React.createElement('h2', { className: 'text-3xl font-bold text-center mb-12' }, 'Common Questions'),
+                        React.createElement('div', { className: 'space-y-4' },
+                            [
+                                { q: 'How long does mainland setup take?', a: 'Typically 7-10 business days. Urgent processing (2-3 days) available for +AED 500.' },
+                                { q: 'What\'s the difference between mainland and free zone?', a: 'Mainland: any business activity but needs local office. Free zone: 100% foreign ownership, tax benefits, but restricted activities.' },
+                                { q: 'Can I open a bank account immediately?', a: 'Once your trade license is issued (same day or next day), you can open a bank account. We handle the coordination.' },
+                                { q: 'Is VAT mandatory?', a: 'Yes, if annual revenue exceeds AED 375,000. We handle registration and compliance.' },
+                                { q: 'What\'s included in your service?', a: 'Everything: documentation, government approvals, bank coordination, and ongoing support for 3 months.' }
+                            ].map((item, i) =>
+                                React.createElement('div', { key: i, className: 'bg-gray-50 p-6 rounded-lg' },
+                                    React.createElement('div', { className: 'font-semibold text-gray-900 mb-2' }, item.q),
+                                    React.createElement('p', { className: 'text-gray-600 text-sm' }, item.a)
+                                )
+                            )
+                        )
+                    )
+                ),
+
+                // CTA SECTION
+                React.createElement('section', { className: 'py-20 px-4 bg-blue-600' },
+                    React.createElement('div', { className: 'max-w-3xl mx-auto text-center text-white' },
+                        React.createElement('h2', { className: 'text-3xl font-bold mb-4' }, 'Ready to Start?'),
+                        React.createElement('p', { className: 'text-lg mb-8 opacity-90' }, 'Get a personalized plan in one quick conversation.'),
+                        React.createElement('div', { className: 'flex flex-col sm:flex-row gap-4 justify-center' },
+                            React.createElement('button', 
+                                { onClick: () => setShowLeadForm(true), className: 'bg-white text-blue-600 px-8 py-3 rounded-lg font-semibold hover:bg-gray-100 transition' },
+                                'Free Consultation'
+                            ),
+                            React.createElement('button', 
+                                { onClick: handleWhatsAppClick, className: 'border-2 border-white text-white px-8 py-3 rounded-lg font-semibold hover:bg-blue-700 transition' },
+                                'Chat Now'
+                            )
+                        )
+                    )
+                ),
+
+                // FOOTER
+                React.createElement('footer', { className: 'bg-gray-900 text-white py-12 px-4' },
+                    React.createElement('div', { className: 'max-w-6xl mx-auto grid grid-cols-1 md:grid-cols-4 gap-8' },
+                        React.createElement('div', {},
+                            React.createElement('div', { className: 'text-xl font-bold mb-4' }, 'UAE Business Setup'),
+                            React.createElement('p', { className: 'text-gray-400 text-sm' }, 'Fast. Transparent. Trusted.')
+                        ),
+                        React.createElement('div', {},
+                            React.createElement('div', { className: 'font-semibold mb-4' }, 'Services'),
+                            React.createElement('ul', { className: 'text-gray-400 text-sm space-y-2' },
+                                React.createElement('li', {}, 'Mainland Setup'),
+                                React.createElement('li', {}, 'Free Zone Setup'),
+                                React.createElement('li', {}, 'Bank Accounts')
+                            )
+                        ),
+                        React.createElement('div', {},
+                            React.createElement('div', { className: 'font-semibold mb-4' }, 'Support'),
+                            React.createElement('ul', { className: 'text-gray-400 text-sm space-y-2' },
+                                React.createElement('li', {}, 'WhatsApp: +971 50 123 4567'),
+                                React.createElement('li', {}, 'Email: hello@uaesetup.ae'),
+                                React.createElement('li', {}, 'Available 24/7')
+                            )
+                        ),
+                        React.createElement('div', {},
+                            React.createElement('div', { className: 'font-semibold mb-4' }, 'Legal'),
+                            React.createElement('ul', { className: 'text-gray-400 text-sm space-y-2' },
+                                React.createElement('li', {}, 'Privacy Policy'),
+                                React.createElement('li', {}, 'Terms of Service'),
+                                React.createElement('li', {}, 'Disclaimers')
+                            )
+                        )
+                    ),
+                    React.createElement('div', { className: 'max-w-6xl mx-auto border-t border-gray-800 mt-8 pt-8 text-gray-400 text-sm text-center' },
+                        '© 2026 UAE Business Setup. All rights reserved.'
+                    )
+                ),
+
+                // LEAD FORM MODAL
+                showLeadForm && React.createElement('div', { className: 'fixed inset-0 bg-black bg-opacity-50 flex items-center justify-center z-40 p-4' },
+                    React.createElement('div', { className: 'bg-white rounded-lg max-w-md w-full p-8' },
+                        !formSubmitted ? (
+                            React.createElement(React.Fragment, {},
+                                React.createElement('h3', { className: 'text-2xl font-bold text-gray-900 mb-2' }, 'Get Your Free Consultation'),
+                                React.createElement('p', { className: 'text-gray-600 text-sm mb-6' }, 'We\'ll call you within 2 hours with a personalized plan.'),
+                                React.createElement('form', { onSubmit: handleFormSubmit, className: 'space-y-4' },
+                                    React.createElement('div', {},
+                                        React.createElement('input', {
+                                            type: 'text',
+                                            placeholder: 'Your name',
+                                            required: true,
+                                            value: formData.name,
+                                            onChange: (e) => setFormData({...formData, name: e.target.value}),
+                                            className: 'w-full px-4 py-2 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-blue-600'
+                                        })
+                                    ),
+                                    React.createElement('div', {},
+                                        React.createElement('input', {
+                                            type: 'email',
+                                            placeholder: 'Your email',
+                                            required: true,
+                                            value: formData.email,
+                                            onChange: (e) => setFormData({...formData, email: e.target.value}),
+                                            className: 'w-full px-4 py-2 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-blue-600'
+                                        })
+                                    ),
+                                    React.createElement('div', {},
+                                        React.createElement('input', {
+                                            type: 'tel',
+                                            placeholder: 'WhatsApp number (+971...)',
+                                            required: true,
+                                            value: formData.whatsapp,
+                                            onChange: (e) => setFormData({...formData, whatsapp: e.target.value}),
+                                            className: 'w-full px-4 py-2 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-blue-600'
+                                        })
+                                    ),
+                                    React.createElement('button', {
+                                        type: 'submit',
+                                        className: 'w-full bg-blue-600 text-white py-2 rounded-lg font-semibold hover:bg-blue-700 transition'
+                                    }, 'Get Consultation')
+                                ),
+                                React.createElement('button', {
+                                    onClick: () => setShowLeadForm(false),
+                                    className: 'w-full mt-3 text-gray-600 py-2 rounded-lg hover:bg-gray-50 transition'
+                                }, 'Close')
+                            )
+                        ) : (
+                            React.createElement('div', { className: 'text-center' },
+                                React.createElement('div', { className: 'text-4xl mb-4' }, '✓'),
+                                React.createElement('h3', { className: 'text-xl font-bold text-gray-900 mb-2' }, 'Thank You!'),
+                                React.createElement('p', { className: 'text-gray-600' }, 'We\'ll contact you within 2 hours.')
+                            )
+                        )
+                    )
+                ),
+
+                // WhatsApp Floating Button
+                React.createElement('button', {
+                    onClick: handleWhatsAppClick,
+                    className: 'fixed bottom-6 right-6 bg-green-500 text-white p-4 rounded-full shadow-lg hover:bg-green-600 transition hover:scale-110 z-30 text-2xl',
+                    title: 'Chat on WhatsApp'
+                }, '💬')
+            );
+        }
+
+        ReactDOM.createRoot(document.getElementById('root')).render(React.createElement(ConsultancyWebsite));
+    </script>
+</body>
+</html>
