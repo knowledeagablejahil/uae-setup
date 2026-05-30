@@ -1,89 +1,111 @@
-'use client';
+'use client'
 
-import React, { useState } from 'react';
-import Link from 'next/link';
-import { Menu, X, MessageCircle, Phone } from 'lucide-react';
+import { useState, useRef, useEffect } from 'react'
+import Link from 'next/link'
+import { Menu, X, ChevronDown } from 'lucide-react'
 
 export default function Layout({ children }) {
-  const [mobileMenuOpen, setMobileMenuOpen] = useState(false);
+  const [mobileMenuOpen, setMobileMenuOpen] = useState(false)
+  const [servicesDropdownOpen, setServicesDropdownOpen] = useState(false)
+  const dropdownRef = useRef(null)
+  const dropdownTimeoutRef = useRef(null)
 
-  const handleWhatsApp = () => {
-    window.open('https://wa.me/971501234567?text=Hi%21%20I%27m%20interested%20in%20your%20UAE%20business%20setup%20services', '_blank');
-  };
+  // Close dropdown when clicking outside
+  useEffect(() => {
+    const handleClickOutside = (event) => {
+      if (dropdownRef.current && !dropdownRef.current.contains(event.target)) {
+        setServicesDropdownOpen(false)
+      }
+    }
+
+    document.addEventListener('mousedown', handleClickOutside)
+    return () => document.removeEventListener('mousedown', handleClickOutside)
+  }, [])
+
+  const handleServicesMouseEnter = () => {
+    clearTimeout(dropdownTimeoutRef.current)
+    setServicesDropdownOpen(true)
+  }
+
+  const handleServicesMouseLeave = () => {
+    dropdownTimeoutRef.current = setTimeout(() => {
+      setServicesDropdownOpen(false)
+    }, 150) // Small delay to allow movement to dropdown
+  }
+
+  const services = [
+    { name: 'Mainland Setup', href: '/services/mainland' },
+    { name: 'Free Zone Setup', href: '/services/freezone' },
+    { name: 'Offshore Setup', href: '/services/offshore' },
+    { name: 'Bank Account Opening', href: '/services/bank-account' },
+    { name: 'VAT & Accounting', href: '/services/vat-accounting' },
+    { name: 'Golden Visa Support', href: '/services/golden-visa' },
+  ]
 
   return (
-    <div className="min-h-screen flex flex-col bg-white">
-      {/* HEADER */}
-      <header className="sticky top-0 z-50 bg-white shadow-sm">
-        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-          <div className="flex justify-between items-center h-20">
+    <>
+      {/* Header */}
+      <header className="sticky top-0 bg-white shadow-sm z-50">
+        <div className="max-w-7xl mx-auto px-4 py-4">
+          <div className="flex justify-between items-center">
             {/* Logo */}
-            <Link href="/" className="flex items-center gap-3">
-              <div className="w-10 h-10 bg-gradient-to-br from-blue-600 to-indigo-600 rounded-lg flex items-center justify-center text-white font-bold">
-                ✓
-              </div>
-              <span className="hidden sm:block text-xl font-bold text-gray-900">UAE Setup</span>
+            <Link href="/" className="text-2xl font-bold text-blue-600">
+              UAE Business Setup
             </Link>
 
             {/* Desktop Navigation */}
-            <nav className="hidden md:flex items-center gap-8">
-              <Link href="/" className="text-gray-700 hover:text-blue-600 transition font-medium text-sm">
+            <nav className="hidden md:flex gap-8 items-center">
+              <Link href="/" className="text-slate-700 hover:text-blue-600 font-semibold">
                 Home
               </Link>
-              <div className="relative group">
-                <button className="text-gray-700 hover:text-blue-600 transition font-medium text-sm flex items-center gap-1">
-                  Services ↓
+
+              {/* Services Dropdown - Desktop */}
+              <div
+                ref={dropdownRef}
+                className="relative"
+                onMouseEnter={handleServicesMouseEnter}
+                onMouseLeave={handleServicesMouseLeave}
+              >
+                <button className="flex items-center gap-2 text-slate-700 hover:text-blue-600 font-semibold">
+                  Services
+                  <ChevronDown size={18} className={`transition-transform ${servicesDropdownOpen ? 'rotate-180' : ''}`} />
                 </button>
-                <div className="absolute left-0 mt-2 w-48 bg-white shadow-lg rounded-lg opacity-0 group-hover:opacity-100 invisible group-hover:visible transition z-50">
-                  <Link href="/services/mainland" className="block px-4 py-3 hover:bg-blue-50 text-sm text-gray-700 hover:text-blue-600">
-                    Mainland Setup
-                  </Link>
-                  <Link href="/services/freezone" className="block px-4 py-3 hover:bg-blue-50 text-sm text-gray-700 hover:text-blue-600">
-                    Free Zone Setup
-                  </Link>
-                  <Link href="/services/bank-account" className="block px-4 py-3 hover:bg-blue-50 text-sm text-gray-700 hover:text-blue-600">
-                    Bank Account Opening
-                  </Link>
-                  <Link href="/services/vat-accounting" className="block px-4 py-3 hover:bg-blue-50 text-sm text-gray-700 hover:text-blue-600">
-                    VAT & Accounting
-                  </Link>
-                  <Link href="/services/golden-visa" className="block px-4 py-3 hover:bg-blue-50 text-sm text-gray-700 hover:text-blue-600">
-                    Golden Visa
-                  </Link>
-                </div>
+
+                {/* Dropdown Menu */}
+                {servicesDropdownOpen && (
+                  <div className="absolute top-full left-0 mt-0 w-56 bg-white border border-slate-200 rounded-lg shadow-lg py-2 z-50">
+                    {services.map((service) => (
+                      <Link
+                        key={service.href}
+                        href={service.href}
+                        className="block px-4 py-3 text-slate-700 hover:bg-blue-50 hover:text-blue-600 transition"
+                        onClick={() => setServicesDropdownOpen(false)}
+                      >
+                        {service.name}
+                      </Link>
+                    ))}
+                  </div>
+                )}
               </div>
-              <Link href="/about" className="text-gray-700 hover:text-blue-600 transition font-medium text-sm">
+
+              <Link href="/about" className="text-slate-700 hover:text-blue-600 font-semibold">
                 About
               </Link>
-              <Link href="/blog" className="text-gray-700 hover:text-blue-600 transition font-medium text-sm">
-                Resources
-              </Link>
-              <Link href="/contact" className="text-gray-700 hover:text-blue-600 transition font-medium text-sm">
+              <Link href="/contact" className="text-slate-700 hover:text-blue-600 font-semibold">
                 Contact
               </Link>
-            </nav>
-
-            {/* CTA Buttons */}
-            <div className="hidden md:flex items-center gap-3">
-              <button
-                onClick={handleWhatsApp}
-                className="flex items-center gap-2 bg-green-500 text-white px-4 py-2 rounded-lg hover:bg-green-600 transition text-sm font-medium"
+              <a
+                href="https://wa.me/971501234567"
+                className="bg-blue-600 text-white px-6 py-2 rounded-lg font-semibold hover:bg-blue-700"
               >
-                <MessageCircle size={18} />
                 WhatsApp
-              </button>
-              <Link
-                href="/contact"
-                className="bg-blue-600 text-white px-4 py-2 rounded-lg hover:bg-blue-700 transition text-sm font-medium"
-              >
-                Contact
-              </Link>
-            </div>
+              </a>
+            </nav>
 
             {/* Mobile Menu Button */}
             <button
+              className="md:hidden"
               onClick={() => setMobileMenuOpen(!mobileMenuOpen)}
-              className="md:hidden p-2 hover:bg-gray-100 rounded-lg transition"
             >
               {mobileMenuOpen ? <X size={24} /> : <Menu size={24} />}
             </button>
@@ -91,136 +113,99 @@ export default function Layout({ children }) {
 
           {/* Mobile Navigation */}
           {mobileMenuOpen && (
-            <nav className="md:hidden pb-6 border-t">
-              <Link href="/" className="block py-3 text-gray-700 hover:text-blue-600 transition">
+            <nav className="md:hidden mt-4 pb-4 border-t border-slate-200 pt-4">
+              <Link href="/" className="block py-2 text-slate-700 hover:text-blue-600 font-semibold">
                 Home
               </Link>
-              <Link href="/services/mainland" className="block py-3 text-gray-700 hover:text-blue-600 transition text-sm">
-                Mainland Setup
-              </Link>
-              <Link href="/services/freezone" className="block py-3 text-gray-700 hover:text-blue-600 transition text-sm">
-                Free Zone Setup
-              </Link>
-              <Link href="/services/bank-account" className="block py-3 text-gray-700 hover:text-blue-600 transition text-sm">
-                Bank Account
-              </Link>
-              <Link href="/services/vat-accounting" className="block py-3 text-gray-700 hover:text-blue-600 transition text-sm">
-                VAT & Accounting
-              </Link>
-              <Link href="/services/golden-visa" className="block py-3 text-gray-700 hover:text-blue-600 transition text-sm">
-                Golden Visa
-              </Link>
-              <Link href="/about" className="block py-3 text-gray-700 hover:text-blue-600 transition">
+
+              {/* Mobile Services Dropdown */}
+              <div className="py-2">
+                <button
+                  className="w-full text-left flex items-center justify-between text-slate-700 hover:text-blue-600 font-semibold"
+                  onClick={() => setServicesDropdownOpen(!servicesDropdownOpen)}
+                >
+                  Services
+                  <ChevronDown size={18} className={`transition-transform ${servicesDropdownOpen ? 'rotate-180' : ''}`} />
+                </button>
+
+                {servicesDropdownOpen && (
+                  <div className="pl-4 mt-2 bg-slate-50 rounded py-2">
+                    {services.map((service) => (
+                      <Link
+                        key={service.href}
+                        href={service.href}
+                        className="block py-2 text-slate-600 hover:text-blue-600"
+                        onClick={() => {
+                          setMobileMenuOpen(false)
+                          setServicesDropdownOpen(false)
+                        }}
+                      >
+                        {service.name}
+                      </Link>
+                    ))}
+                  </div>
+                )}
+              </div>
+
+              <Link href="/about" className="block py-2 text-slate-700 hover:text-blue-600 font-semibold">
                 About
               </Link>
-              <Link href="/blog" className="block py-3 text-gray-700 hover:text-blue-600 transition">
-                Resources
-              </Link>
-              <Link href="/contact" className="block py-3 text-gray-700 hover:text-blue-600 transition">
+              <Link href="/contact" className="block py-2 text-slate-700 hover:text-blue-600 font-semibold">
                 Contact
               </Link>
-              <button
-                onClick={handleWhatsApp}
-                className="w-full mt-4 flex items-center justify-center gap-2 bg-green-500 text-white px-4 py-2 rounded-lg hover:bg-green-600 transition text-sm font-medium"
+              <a
+                href="https://wa.me/971501234567"
+                className="block mt-4 bg-blue-600 text-white px-6 py-2 rounded-lg font-semibold hover:bg-blue-700 text-center"
               >
-                <MessageCircle size={18} />
                 WhatsApp
-              </button>
+              </a>
             </nav>
           )}
         </div>
       </header>
 
-      {/* MAIN CONTENT */}
-      <main className="flex-1">
-        {children}
-      </main>
+      {/* Main Content */}
+      <main>{children}</main>
 
-      {/* FOOTER */}
-      <footer className="bg-gray-900 text-white mt-20">
-        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-16">
-          <div className="grid grid-cols-1 md:grid-cols-4 gap-10 mb-12">
+      {/* Footer */}
+      <footer className="bg-slate-900 text-white py-12">
+        <div className="max-w-6xl mx-auto px-4">
+          <div className="grid md:grid-cols-4 gap-8 mb-8">
             <div>
               <h3 className="text-xl font-bold mb-4">UAE Business Setup</h3>
-              <p className="text-gray-400 text-sm">Fast. Transparent. Trusted.</p>
-              <p className="text-gray-400 text-sm mt-4">Expert guidance for your UAE business journey</p>
+              <p className="text-slate-400">Professional business setup services across UAE</p>
             </div>
-
             <div>
-              <h4 className="font-semibold mb-4 text-white">Services</h4>
-              <ul className="space-y-2 text-sm text-gray-400">
-                <li><Link href="/services/mainland" className="hover:text-white transition">Mainland Setup</Link></li>
-                <li><Link href="/services/freezone" className="hover:text-white transition">Free Zone Setup</Link></li>
-                <li><Link href="/services/bank-account" className="hover:text-white transition">Bank Accounts</Link></li>
-                <li><Link href="/services/vat-accounting" className="hover:text-white transition">VAT & Accounting</Link></li>
-                <li><Link href="/services/golden-visa" className="hover:text-white transition">Golden Visa</Link></li>
+              <h4 className="font-bold mb-4">Services</h4>
+              <ul className="space-y-2 text-slate-400">
+                {services.map((service) => (
+                  <li key={service.href}>
+                    <Link href={service.href} className="hover:text-white">
+                      {service.name}
+                    </Link>
+                  </li>
+                ))}
               </ul>
             </div>
-
             <div>
-              <h4 className="font-semibold mb-4 text-white">Company</h4>
-              <ul className="space-y-2 text-sm text-gray-400">
-                <li><Link href="/about" className="hover:text-white transition">About Us</Link></li>
-                <li><Link href="/blog" className="hover:text-white transition">Resources</Link></li>
-                <li><Link href="/contact" className="hover:text-white transition">Contact</Link></li>
-                <li><a href="#" className="hover:text-white transition">Privacy Policy</a></li>
-                <li><a href="#" className="hover:text-white transition">Terms of Service</a></li>
+              <h4 className="font-bold mb-4">Company</h4>
+              <ul className="space-y-2 text-slate-400">
+                <li><Link href="/about" className="hover:text-white">About Us</Link></li>
+                <li><Link href="/contact" className="hover:text-white">Contact</Link></li>
               </ul>
             </div>
-
             <div>
-              <h4 className="font-semibold mb-4 text-white">Get In Touch</h4>
-              <ul className="space-y-3 text-sm text-gray-400">
-                <li className="flex items-start gap-2">
-                  <Phone size={16} className="mt-1 flex-shrink-0" />
-                  <span>+971 50 123 4567</span>
-                </li>
-                <li>
-                  <a href="mailto:hello@uaesetup.ae" className="hover:text-white transition">
-                    hello@uaesetup.ae
-                  </a>
-                </li>
-                <li>
-                  <button
-                    onClick={handleWhatsApp}
-                    className="flex items-center gap-2 hover:text-white transition"
-                  >
-                    <MessageCircle size={16} />
-                    WhatsApp Chat
-                  </button>
-                </li>
-              </ul>
+              <h4 className="font-bold mb-4">Contact</h4>
+              <p className="text-slate-400 mb-2">📧 hello@uaesetup.ae</p>
+              <p className="text-slate-400 mb-2">📞 +971 50 123 4567</p>
+              <p className="text-slate-400">💬 Available on WhatsApp 24/7</p>
             </div>
           </div>
-
-          <div className="border-t border-gray-800 pt-8">
-            <div className="grid grid-cols-1 md:grid-cols-3 gap-4 text-center md:text-left text-sm text-gray-400">
-              <div>
-                <span className="font-semibold text-white">50+</span> Years Combined Experience
-              </div>
-              <div>
-                <span className="font-semibold text-white">500+</span> Successful Setups
-              </div>
-              <div>
-                <span className="font-semibold text-white">100%</span> Client Satisfaction
-              </div>
-            </div>
-          </div>
-
-          <div className="border-t border-gray-800 mt-8 pt-8 text-center text-gray-500 text-sm">
-            © 2024 UAE Business Setup. All rights reserved.
+          <div className="border-t border-slate-700 pt-8 text-center text-slate-400">
+            <p>&copy; 2024 UAE Business Setup. All rights reserved.</p>
           </div>
         </div>
       </footer>
-
-      {/* WhatsApp Floating Button */}
-      <button
-        onClick={handleWhatsApp}
-        className="fixed bottom-6 right-6 bg-green-500 text-white p-4 rounded-full shadow-lg hover:bg-green-600 transition hover:scale-110 z-40 animate-bounce"
-        title="Chat on WhatsApp"
-      >
-        <MessageCircle size={24} />
-      </button>
-    </div>
-  );
+    </>
+  )
 }
