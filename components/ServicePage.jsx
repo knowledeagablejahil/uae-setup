@@ -1,7 +1,6 @@
 'use client';
 
 import React, { useState } from 'react';
-import Layout from '@/components/Layout';
 import { CheckCircle, Clock, DollarSign, ArrowRight, MessageCircle } from 'lucide-react';
 
 const ServicePage = ({ service }) => {
@@ -172,155 +171,151 @@ const ServicePage = ({ service }) => {
       price: 800,
       time: '3-5 days',
       icon: '🏦',
-      description: 'Open a business bank account quickly and easily. We coordinate with major UAE banks and handle all documentation.',
+      description: 'Open corporate bank accounts with UAE banks. Fast, simple, and secure banking setup for your new business.',
       
       features: [
+        'Quick account opening',
+        'Access to multiple UAE banks',
+        'Online and in-person options',
+        'Competitive fees and rates',
         'Multi-currency accounts available',
-        'Trade finance options',
-        'Online banking platform',
-        'Credit facilities available',
-        'Fast approval process',
-        'Dedicated relationship manager'
+        'Full digital banking setup'
       ],
       
       requirements: [
-        'Trade license copy',
-        'Passport and ID copies',
-        'Proof of address',
-        'Business documentation',
-        'Initial deposit (varies by bank)'
+        'Business license or trade registration',
+        'Director passport and UAE ID',
+        'Company registration certificate',
+        'Proof of business address',
+        'Initial deposit amount'
       ],
       
       included: [
         'Bank selection consultation',
-        'Document preparation',
-        'Application submission',
-        'Follow-up with banks',
-        'Account activation support',
-        'Online banking setup',
-        'Checkbook and card issuance',
-        '1 month post-opening support'
+        'Application preparation',
+        'Document coordination',
+        'Account setup assistance',
+        'Internet banking setup',
+        'Card issuance support',
+        '1 month account management support'
       ],
       
       process: [
-        { step: 1, title: 'Bank Selection', description: 'Choose the best bank for your needs.' },
-        { step: 2, title: 'Documentation', description: 'Prepare bank application documents.' },
-        { step: 3, title: 'Submission', description: 'Submit application to bank.' },
-        { step: 4, title: 'Verification', description: 'Bank verifies documents and approves.' },
-        { step: 5, title: 'Activation', description: 'Activate account and receive banking services.' }
+        { step: 1, title: 'Bank Selection', description: 'We help you choose the best bank for your needs.' },
+        { step: 2, title: 'Preparation', description: 'Gather all required documents.' },
+        { step: 3, title: 'Application', description: 'Submit application to selected bank.' },
+        { step: 4, title: 'Verification', description: 'Bank verifies information and approves.' },
+        { step: 5, title: 'Activation', description: 'Account activated and cards issued.' }
       ],
       
       faq: [
-        { q: 'Which bank should I choose?', a: 'We compare rates and features to recommend the best fit.' },
-        { q: 'How much initial deposit is needed?', a: 'Typically AED 1,000-10,000 depending on the bank.' },
-        { q: 'Can I open remotely?', a: 'Most banks require in-person verification for first account.' },
-        { q: 'How long for approval?', a: 'Usually 3-5 days after document submission.' }
+        { q: 'Which bank is best?', a: 'Different banks suit different needs. We recommend based on your business.' },
+        { q: 'How much initial deposit needed?', a: 'Varies by bank, typically AED 5,000-10,000.' },
+        { q: 'Can I get a business credit card?', a: 'Yes, once account is established and in good standing.' },
+        { q: 'How long does account opening take?', a: 'Usually 3-5 days from submission.' }
       ]
     },
 
     'vat-accounting': {
-      title: 'VAT & Accounting Setup',
-      shortDesc: 'Compliance and professional financial management.',
+      title: 'VAT & Accounting Services',
+      shortDesc: 'Complete VAT registration and accounting support.',
       price: 1200,
       time: '2-3 days',
       icon: '📊',
-      description: 'Register for VAT, set up accounting systems, and ensure full compliance. Backed by professional accountants.',
+      description: 'Handle VAT registration, compliance, and ongoing accounting support for your UAE business.',
       
       features: [
-        'VAT registration and filing',
-        'Bookkeeping and accounting',
+        'VAT registration assistance',
+        'Monthly bookkeeping',
+        'Quarterly VAT filing',
         'Financial reporting',
-        'Tax optimization',
-        'Audit preparation',
-        'Compliance management'
+        'Tax compliance consulting',
+        'Audit support'
       ],
       
       requirements: [
-        'Trade license copy',
-        'Business structure details',
-        'Revenue projections',
-        'Banking information',
-        'Accounting software preference'
+        'Business registration documents',
+        'Financial records',
+        'Bank statements',
+        'Proof of turnover',
+        'Supplier/customer information'
       ],
       
       included: [
-        'VAT registration (if required)',
-        'Accounting system setup',
-        'Chart of accounts creation',
-        'Monthly bookkeeping templates',
-        'Quarterly VAT return templates',
-        'Tax calculation templates',
-        'Financial report setup',
-        '3 months of accounting support'
+        'VAT registration setup',
+        'Monthly accounting records',
+        'Quarterly VAT returns',
+        'Annual financial statements',
+        'Tax advisory',
+        'Record maintenance',
+        '3 months ongoing support'
       ],
       
       process: [
-        { step: 1, title: 'Assessment', description: 'Determine VAT requirements for your business.' },
-        { step: 2, title: 'Registration', description: 'Register with tax authority if needed.' },
-        { step: 3, title: 'System Setup', description: 'Configure accounting software and processes.' },
-        { step: 4, title: 'Training', description: 'Train your team on accounting procedures.' },
-        { step: 5, title: 'Compliance', description: 'Ensure ongoing compliance and filing.' }
+        { step: 1, title: 'Assessment', description: 'Review your business financials.' },
+        { step: 2, title: 'Registration', description: 'Complete VAT registration if needed.' },
+        { step: 3, title: 'Setup', description: 'Establish accounting systems.' },
+        { step: 4, title: 'Monthly Records', description: 'Record all transactions.' },
+        { step: 5, title: 'Filing & Reporting', description: 'File VAT returns and reports.' }
       ],
       
       faq: [
-        { q: 'When do I need to register for VAT?', a: 'When annual revenue exceeds AED 375,000.' },
-        { q: 'Can you manage VAT quarterly returns?', a: 'Yes, we handle filing and calculations.' },
-        { q: 'What about year-end audit?', a: 'We prepare all documentation needed for audit.' },
-        { q: 'Do you handle tax optimization?', a: 'Yes, we advise on legitimate tax-saving strategies.' }
+        { q: 'Do I need VAT registration?', a: 'If turnover exceeds AED 375,000, VAT registration is mandatory.' },
+        { q: 'How much does accounting cost?', a: 'Ongoing costs depend on business complexity. We offer flexible packages.' },
+        { q: 'When is VAT due?', a: 'Quarterly submission with payment obligations based on sales.' },
+        { q: 'What records do you need?', a: 'All invoices, receipts, and transaction records.' }
       ]
     },
 
     'golden-visa': {
-      title: 'Golden Visa & Residency Support',
-      shortDesc: '10-year residency for investors and entrepreneurs.',
+      title: 'Golden Visa Support',
+      shortDesc: 'Long-term residency visa assistance for business owners.',
       price: 5000,
       time: '15-30 days',
-      icon: '🎫',
-      description: 'Obtain long-term residency in UAE. Perfect for business owners, investors, and their families.',
+      icon: '🛂',
+      description: 'Obtain UAE Golden Visa for business owners and investors, securing long-term residency.',
       
       features: [
-        '10-year residency period',
-        'Family sponsorship options',
-        'Investment or business-based',
-        'Renewal after 10 years',
-        'Multiple entry visa included',
-        'Flexible conditions'
+        'Multi-year long-term visa',
+        'No sponsorship needed after approval',
+        'Fast-track processing',
+        'Family sponsorship eligible',
+        'Renewable benefits',
+        'Investment-backed status'
       ],
       
       requirements: [
-        'Valid passport (6+ months validity)',
-        'Bank statements and proof of funds',
-        'Business registration documents',
-        'Investment portfolio details',
-        'Character reference letters',
-        'Medical fitness certificate'
+        'Valid passport',
+        'Business registration/investment proof',
+        'Financial documents',
+        'Educational qualification (as per criteria)',
+        'Health insurance',
+        'Clean background check'
       ],
       
       included: [
         'Eligibility assessment',
         'Document preparation',
-        'Government fee coordination',
         'Application submission',
-        'Interview preparation',
-        'Status tracking',
-        'Approval coordination',
-        'Family sponsorship assistance',
+        'Government liaison',
+        'Visa processing coordination',
+        'Approval receipt handling',
         'Post-approval support'
       ],
       
       process: [
-        { step: 1, title: 'Assessment', description: 'Determine your eligibility for golden visa.' },
+        { step: 1, title: 'Eligibility Check', description: 'Verify you meet Golden Visa criteria.' },
         { step: 2, title: 'Documentation', description: 'Prepare all required documents.' },
-        { step: 3, title: 'Submission', description: 'Submit application to authorities.' },
-        { step: 4, title: 'Processing', description: 'Authorities review and process application.' },
-        { step: 5, title: 'Approval', description: 'Receive visa and setup residency.' }
+        { step: 3, title: 'Application', description: 'Submit application to immigration authorities.' },
+        { step: 4, title: 'Review', description: 'Authorities review and process application.' },
+        { step: 5, title: 'Approval', description: 'Receive Golden Visa approval.' }
       ],
       
       faq: [
-        { q: 'What investment is required?', a: 'Varies. Real estate or business investment typically from AED 500,000.' },
-        { q: 'Can I bring my family?', a: 'Yes, spouses and children can be sponsored.' },
-        { q: 'Is the visa renewable?', a: 'Yes, after 10 years you can renew.' },
-        { q: 'How long is processing?', a: 'Typically 15-30 days from submission.' }
+        { q: 'What are the eligibility criteria?', a: 'Varies. Business owners, investors, professionals, and students may qualify.' },
+        { q: 'How long is the visa valid?', a: 'Typically 5 or 10 years depending on category.' },
+        { q: 'Can I sponsor my family?', a: 'Yes, family members can be sponsored.' },
+        { q: 'How much does it cost?', a: 'Our service is AED 5,000. Government fees vary by visa type.' }
       ]
     }
   };
@@ -328,12 +323,12 @@ const ServicePage = ({ service }) => {
   const details = serviceDetails[service] || serviceDetails.mainland;
 
   const handleWhatsAppClick = () => {
-    const message = encodeURIComponent(`Hi! I'm interested in your ${details.title} service.`);
-    window.open(`https://wa.me/971501234567?text=${message}`, '_blank');
+    window.open('https://wa.me/971503947208', '_blank');
   };
 
   const handleFormSubmit = (e) => {
     e.preventDefault();
+    console.log('Form submitted:', formData);
     setFormSubmitted(true);
     setTimeout(() => {
       setShowLeadForm(false);
@@ -343,19 +338,17 @@ const ServicePage = ({ service }) => {
   };
 
   return (
-    <Layout>
+    <>
       {/* HERO */}
-      <section className="pt-20 pb-16 px-4 bg-gradient-to-br from-blue-50 to-indigo-50">
+      <section className="py-16 px-4 bg-blue-50">
         <div className="max-w-5xl mx-auto">
-          <div className="flex items-start gap-6 mb-6">
-            <div className="text-5xl">{details.icon}</div>
-            <div>
-              <h1 className="text-5xl font-bold text-gray-900 mb-3">{details.title}</h1>
-              <p className="text-xl text-gray-600">{details.description}</p>
-            </div>
+          <div className="flex items-center gap-4 mb-6">
+            <span className="text-5xl">{details.icon}</span>
+            <h1 className="text-4xl md:text-5xl font-bold text-gray-900">{details.title}</h1>
           </div>
+          <p className="text-xl text-gray-700 mb-8 max-w-2xl">{details.description}</p>
 
-          <div className="grid grid-cols-3 gap-4 mt-8 max-w-2xl">
+          <div className="grid grid-cols-1 md:grid-cols-3 gap-4 mb-8">
             <div className="bg-white p-4 rounded-lg shadow">
               <DollarSign className="text-blue-600 mb-2" size={24} />
               <div className="text-2xl font-bold text-gray-900">AED {details.price.toLocaleString()}</div>
@@ -527,7 +520,7 @@ const ServicePage = ({ service }) => {
           </div>
         </div>
       )}
-    </Layout>
+    </>
   );
 };
 
