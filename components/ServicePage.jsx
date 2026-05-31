@@ -323,7 +323,7 @@ const ServicePage = ({ service }) => {
   const details = serviceDetails[service] || serviceDetails.mainland;
 
   const handleWhatsAppClick = () => {
-    window.open('https://wa.me/971503947208?text=Hello%20UAE%20Setup%2C%20I%20need%20help%20with%20business%20setup', '_blank');
+    window.open('https://wa.me/971503947208?text=Hello%20Elevate%20360%2C%20I%20need%20help%20with%20business%20setup', '_blank');
   };
 
   const handleFormSubmit = (e) => {
