@@ -1,18 +1,17 @@
+import Navbar from '@/components/Navbar'
 import './globals.css'
-import Layout from '@/components/Layout'
 
 export const metadata = {
-  title: 'UAE Business Setup',
-  description: 'Professional business setup services in UAE',
+  title: 'Elevate 360 | Business Setup in UAE',
+  description: 'Expert business setup assistance in UAE',
 }
 
 export default function RootLayout({ children }) {
   return (
     <html lang="en">
       <body>
-        <Layout>
-          {children}
-        </Layout>
+        <Navbar />
+        {children}
       </body>
     </html>
   )
