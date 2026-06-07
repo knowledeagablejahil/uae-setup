@@ -53,12 +53,12 @@ export default function Navbar() {
       <div className="mx-auto flex max-w-7xl items-center justify-between px-6 py-4">
 
         {/* Logo */}
-        <Link href="/" className="text-xl font-bold text-blue-600 shrink-0" onClick={closeAll}>
+        <Link href="/" className="shrink-0 text-xl font-bold text-blue-600" onClick={closeAll}>
           Elevate 360°
         </Link>
 
         {/* Desktop Nav — centered */}
-        <div className="hidden md:flex items-center justify-center gap-8 flex-1">
+        <div className="hidden flex-1 items-center justify-center gap-8 md:flex">
 
           <Link href="/" className="text-sm font-medium text-slate-700 hover:text-blue-600" onClick={closeAll}>
             Home
@@ -74,7 +74,7 @@ export default function Navbar() {
             </button>
 
             {businessOpen && (
-              <div className="absolute left-1/2 -translate-x-1/2 top-full z-50 mt-2 w-64 rounded-xl border border-slate-100 bg-white shadow-lg">
+              <div className="absolute left-1/2 top-full z-50 mt-2 w-64 -translate-x-1/2 rounded-xl border border-slate-100 bg-white shadow-lg">
 
                 {/* Freezone row */}
                 <div
@@ -87,7 +87,7 @@ export default function Navbar() {
                   </button>
 
                   {freezoneOpen && (
-                    <div className="absolute right-full top-0 z-50 w-64 rounded-xl border border-slate-100 bg-white shadow-lg">
+                    <div className="absolute left-full top-0 z-50 w-64 rounded-xl border border-slate-100 bg-white shadow-lg">
 
                       {/* Dubai sub-row */}
                       <div
@@ -96,7 +96,7 @@ export default function Navbar() {
                         onMouseLeave={() => setDubaiOpen(false)}
                       >
                         <Link
-                          href="/business-setup/dubai-freezone-overview"
+                          href="/business-setup/freezone-company-formation/dubai-freezone"
                           onClick={closeAll}
                           className="flex w-full items-center px-4 py-3 text-sm font-semibold text-slate-800 hover:bg-blue-50 hover:text-blue-600"
                         >
@@ -104,15 +104,15 @@ export default function Navbar() {
                         </Link>
 
                         {dubaiOpen && (
-                          <div className="absolute right-full top-0 z-50 w-64 rounded-xl border border-slate-100 bg-white shadow-lg">
+                          <div className="absolute left-full top-0 z-50 w-64 rounded-xl border border-slate-100 bg-white shadow-lg">
                             {[
-                              { label: 'JAFZA Freezone', href: '/business-setup/dubai-freezone/jafza-freezone' },
-                              { label: 'IFZA Freezone', href: '/business-setup/dubai-freezone/ifza-freezone' },
-                              { label: 'DMCC Free Zone', href: '/business-setup/dubai-freezone/dmcc-freezone' },
-                              { label: 'MEYDAN Freezone', href: '/business-setup/dubai-freezone/meydan-freezone' },
-                              { label: 'Dubai World Trade Centre', href: '/business-setup/dubai-freezone/dubai-world-trade-centre' },
-                              { label: 'DIFC Free Zone', href: '/business-setup/dubai-freezone/difc-free-zone' },
-                              { label: 'Dubai South Freezone', href: '/business-setup/dubai-freezone/dubai-south-freezone' },
+                              { label: 'JAFZA Freezone', href: '/business-setup/freezone-company-formation/dubai-freezone/jafza-freezone' },
+                              { label: 'IFZA Freezone', href: '/business-setup/freezone-company-formation/dubai-freezone/ifza-freezone' },
+                              { label: 'DMCC Free Zone', href: '/business-setup/freezone-company-formation/dubai-freezone/dmcc-freezone' },
+                              { label: 'MEYDAN Freezone', href: '/business-setup/freezone-company-formation/dubai-freezone/meydan-freezone' },
+                              { label: 'Dubai World Trade Centre', href: '/business-setup/freezone-company-formation/dubai-freezone/dubai-world-trade-centre' },
+                              { label: 'DIFC Free Zone', href: '/business-setup/freezone-company-formation/dubai-freezone/difc-free-zone' },
+                              { label: 'Dubai South Freezone', href: '/business-setup/freezone-company-formation/dubai-freezone/dubai-south-freezone' },
                             ].map((item) => (
                               <Link key={item.href} href={item.href} onClick={closeAll}
                                 className="block px-4 py-3 text-sm text-slate-700 hover:bg-blue-50 hover:text-blue-600">
@@ -130,7 +130,7 @@ export default function Navbar() {
                         onMouseLeave={() => setAbuDhabiOpen(false)}
                       >
                         <Link
-                          href="/business-setup/abu-dhabi-freezone-overview"
+                          href="/business-setup/freezone-company-formation/abu-dhabi-freezone"
                           onClick={closeAll}
                           className="flex w-full items-center px-4 py-3 text-sm font-semibold text-slate-800 hover:bg-blue-50 hover:text-blue-600"
                         >
@@ -138,10 +138,10 @@ export default function Navbar() {
                         </Link>
 
                         {abuDhabiOpen && (
-                          <div className="absolute right-full top-0 z-50 w-64 rounded-xl border border-slate-100 bg-white shadow-lg">
+                          <div className="absolute left-full top-0 z-50 w-64 rounded-xl border border-slate-100 bg-white shadow-lg">
                             {[
-                              { label: 'ADGM – Abu Dhabi Global Market', href: '/business-setup/abu-dhabi-freezone/adgm-freezone' },
-                              { label: 'KIZAD – Khalifa Industrial Zone', href: '/business-setup/abu-dhabi-freezone/kizad-freezone' },
+                              { label: 'ADGM – Abu Dhabi Global Market', href: '/business-setup/freezone-company-formation/abu-dhabi-freezone/adgm-freezone' },
+                              { label: 'KIZAD – Khalifa Industrial Zone', href: '/business-setup/freezone-company-formation/abu-dhabi-freezone/kizad-freezone' },
                             ].map((item) => (
                               <Link key={item.href} href={item.href} onClick={closeAll}
                                 className="block px-4 py-3 text-sm text-slate-700 hover:bg-blue-50 hover:text-blue-600">
@@ -179,15 +179,15 @@ export default function Navbar() {
                   </button>
 
                   {offshoreOpen && (
-                    <div className="absolute right-full top-0 z-50 w-64 rounded-xl border border-slate-100 bg-white shadow-lg">
+                    <div className="absolute left-full top-0 z-50 w-64 rounded-xl border border-slate-100 bg-white shadow-lg">
                       {[
-                        { label: 'Dubai Offshore (JAFZA)', href: '/business-setup/offshore-company-formation/dubai-offshore' },
-                        { label: 'RAK ICC Offshore', href: '/business-setup/offshore-company-formation/rak-icc-offshore' },
-                        { label: 'Seychelles Offshore', href: '/business-setup/offshore-company-formation/seychelles-offshore' },
-                        { label: 'Cyprus Offshore', href: '/business-setup/offshore-company-formation/cyprus-offshore' },
-                        { label: 'Hong Kong Offshore', href: '/business-setup/offshore-company-formation/hong-kong-offshore' },
-                        { label: 'BVI Offshore', href: '/business-setup/offshore-company-formation/bvi-offshore' },
-                        { label: 'Ajman Offshore', href: '/business-setup/offshore-company-formation/ajman-offshore' },
+                        { label: 'Dubai Offshore (JAFZA)', href: '/business-setup/Offshore-company-formation/dubai-offshore' },
+                        { label: 'RAK ICC Offshore', href: '/business-setup/Offshore-company-formation/rak-icc-offshore' },
+                        { label: 'Seychelles Offshore', href: '/business-setup/Offshore-company-formation/seychelles-offshore' },
+                        { label: 'Cyprus Offshore', href: '/business-setup/Offshore-company-formation/cyprus-offshore' },
+                        { label: 'Hong Kong Offshore', href: '/business-setup/Offshore-company-formation/hong-kong-offshore' },
+                        { label: 'BVI Offshore', href: '/business-setup/Offshore-company-formation/bvi-offshore' },
+                        { label: 'Ajman Offshore', href: '/business-setup/Offshore-company-formation/ajman-offshore' },
                       ].map((item) => (
                         <Link key={item.href} href={item.href} onClick={closeAll}
                           className="block px-4 py-3 text-sm text-slate-700 hover:bg-blue-50 hover:text-blue-600">
@@ -209,7 +209,7 @@ export default function Navbar() {
                   </button>
 
                   {mainlandOpen && (
-                    <div className="absolute right-full top-0 z-50 w-64 rounded-xl border border-slate-100 bg-white shadow-lg">
+                    <div className="absolute left-full top-0 z-50 w-64 rounded-xl border border-slate-100 bg-white shadow-lg">
                       {[
                         { label: 'Dubai Mainland', href: '/business-setup/mainland-company-formation/dubai-mainland' },
                         { label: 'Abu Dhabi Mainland', href: '/business-setup/mainland-company-formation/abu-dhabi-mainland' },
@@ -239,7 +239,7 @@ export default function Navbar() {
             </button>
 
             {servicesOpen && (
-              <div className="absolute left-1/2 -translate-x-1/2 top-full z-50 mt-2 w-56 rounded-xl border border-slate-100 bg-white shadow-lg">
+              <div className="absolute left-1/2 top-full z-50 mt-2 w-56 -translate-x-1/2 rounded-xl border border-slate-100 bg-white shadow-lg">
                 {[
                   { label: 'Bank Account Opening', href: '/services/bank-account' },
                   { label: 'VAT & Accounting', href: '/services/vat-accounting' },
@@ -259,14 +259,15 @@ export default function Navbar() {
           <Link href="/contact" className="text-sm font-medium text-slate-700 hover:text-blue-600" onClick={closeAll}>
             Contact Us
           </Link>
+
         </div>
 
-        {/* CTA — right side */}
+        {/* CTA — right */}
         <a
           href="https://wa.me/971503947208"
           target="_blank"
           rel="noopener noreferrer"
-          className="hidden md:inline-block shrink-0 rounded-xl bg-blue-600 px-5 py-2.5 text-sm font-semibold text-white shadow-sm transition hover:bg-blue-700"
+          className="hidden shrink-0 rounded-xl bg-blue-600 px-5 py-2.5 text-sm font-semibold text-white shadow-sm transition hover:bg-blue-700 md:inline-block"
         >
           Get Started
         </a>
@@ -290,17 +291,17 @@ export default function Navbar() {
             <Link href="/" onClick={closeAll} className="text-sm font-medium text-slate-700">Home</Link>
 
             <p className="pt-2 text-xs font-bold uppercase tracking-widest text-slate-400">Dubai Freezone</p>
-            <Link href="/business-setup/dubai-freezone/jafza-freezone" onClick={closeAll} className="pl-3 text-sm text-slate-700">JAFZA</Link>
-            <Link href="/business-setup/dubai-freezone/ifza-freezone" onClick={closeAll} className="pl-3 text-sm text-slate-700">IFZA</Link>
-            <Link href="/business-setup/dubai-freezone/dmcc-freezone" onClick={closeAll} className="pl-3 text-sm text-slate-700">DMCC</Link>
-            <Link href="/business-setup/dubai-freezone/meydan-freezone" onClick={closeAll} className="pl-3 text-sm text-slate-700">MEYDAN</Link>
-            <Link href="/business-setup/dubai-freezone/dubai-world-trade-centre" onClick={closeAll} className="pl-3 text-sm text-slate-700">DWTC</Link>
-            <Link href="/business-setup/dubai-freezone/difc-free-zone" onClick={closeAll} className="pl-3 text-sm text-slate-700">DIFC</Link>
-            <Link href="/business-setup/dubai-freezone/dubai-south-freezone" onClick={closeAll} className="pl-3 text-sm text-slate-700">Dubai South</Link>
+            <Link href="/business-setup/freezone-company-formation/dubai-freezone/jafza-freezone" onClick={closeAll} className="pl-3 text-sm text-slate-700">JAFZA</Link>
+            <Link href="/business-setup/freezone-company-formation/dubai-freezone/ifza-freezone" onClick={closeAll} className="pl-3 text-sm text-slate-700">IFZA</Link>
+            <Link href="/business-setup/freezone-company-formation/dubai-freezone/dmcc-freezone" onClick={closeAll} className="pl-3 text-sm text-slate-700">DMCC</Link>
+            <Link href="/business-setup/freezone-company-formation/dubai-freezone/meydan-freezone" onClick={closeAll} className="pl-3 text-sm text-slate-700">MEYDAN</Link>
+            <Link href="/business-setup/freezone-company-formation/dubai-freezone/dubai-world-trade-centre" onClick={closeAll} className="pl-3 text-sm text-slate-700">DWTC</Link>
+            <Link href="/business-setup/freezone-company-formation/dubai-freezone/difc-free-zone" onClick={closeAll} className="pl-3 text-sm text-slate-700">DIFC</Link>
+            <Link href="/business-setup/freezone-company-formation/dubai-freezone/dubai-south-freezone" onClick={closeAll} className="pl-3 text-sm text-slate-700">Dubai South</Link>
 
             <p className="pt-2 text-xs font-bold uppercase tracking-widest text-slate-400">Abu Dhabi Freezone</p>
-            <Link href="/business-setup/abu-dhabi-freezone/adgm-freezone" onClick={closeAll} className="pl-3 text-sm text-slate-700">ADGM</Link>
-            <Link href="/business-setup/abu-dhabi-freezone/kizad-freezone" onClick={closeAll} className="pl-3 text-sm text-slate-700">KIZAD</Link>
+            <Link href="/business-setup/freezone-company-formation/abu-dhabi-freezone/adgm-freezone" onClick={closeAll} className="pl-3 text-sm text-slate-700">ADGM</Link>
+            <Link href="/business-setup/freezone-company-formation/abu-dhabi-freezone/kizad-freezone" onClick={closeAll} className="pl-3 text-sm text-slate-700">KIZAD</Link>
 
             <p className="pt-2 text-xs font-bold uppercase tracking-widest text-slate-400">Other Freezones</p>
             <Link href="/business-setup/freezone-company-formation/ajman-freezone" onClick={closeAll} className="pl-3 text-sm text-slate-700">Ajman Freezone</Link>
@@ -309,13 +310,13 @@ export default function Navbar() {
             <Link href="/business-setup/freezone-company-formation/rakez-freezone" onClick={closeAll} className="pl-3 text-sm text-slate-700">RAKEZ</Link>
 
             <p className="pt-2 text-xs font-bold uppercase tracking-widest text-slate-400">Offshore</p>
-            <Link href="/business-setup/offshore-company-formation/dubai-offshore" onClick={closeAll} className="pl-3 text-sm text-slate-700">Dubai Offshore</Link>
-            <Link href="/business-setup/offshore-company-formation/rak-icc-offshore" onClick={closeAll} className="pl-3 text-sm text-slate-700">RAK ICC</Link>
-            <Link href="/business-setup/offshore-company-formation/seychelles-offshore" onClick={closeAll} className="pl-3 text-sm text-slate-700">Seychelles</Link>
-            <Link href="/business-setup/offshore-company-formation/cyprus-offshore" onClick={closeAll} className="pl-3 text-sm text-slate-700">Cyprus</Link>
-            <Link href="/business-setup/offshore-company-formation/hong-kong-offshore" onClick={closeAll} className="pl-3 text-sm text-slate-700">Hong Kong</Link>
-            <Link href="/business-setup/offshore-company-formation/bvi-offshore" onClick={closeAll} className="pl-3 text-sm text-slate-700">BVI</Link>
-            <Link href="/business-setup/offshore-company-formation/ajman-offshore" onClick={closeAll} className="pl-3 text-sm text-slate-700">Ajman Offshore</Link>
+            <Link href="/business-setup/Offshore-company-formation/dubai-offshore" onClick={closeAll} className="pl-3 text-sm text-slate-700">Dubai Offshore</Link>
+            <Link href="/business-setup/Offshore-company-formation/rak-icc-offshore" onClick={closeAll} className="pl-3 text-sm text-slate-700">RAK ICC</Link>
+            <Link href="/business-setup/Offshore-company-formation/seychelles-offshore" onClick={closeAll} className="pl-3 text-sm text-slate-700">Seychelles</Link>
+            <Link href="/business-setup/Offshore-company-formation/cyprus-offshore" onClick={closeAll} className="pl-3 text-sm text-slate-700">Cyprus</Link>
+            <Link href="/business-setup/Offshore-company-formation/hong-kong-offshore" onClick={closeAll} className="pl-3 text-sm text-slate-700">Hong Kong</Link>
+            <Link href="/business-setup/Offshore-company-formation/bvi-offshore" onClick={closeAll} className="pl-3 text-sm text-slate-700">BVI</Link>
+            <Link href="/business-setup/Offshore-company-formation/ajman-offshore" onClick={closeAll} className="pl-3 text-sm text-slate-700">Ajman Offshore</Link>
 
             <p className="pt-2 text-xs font-bold uppercase tracking-widest text-slate-400">Mainland</p>
             <Link href="/business-setup/mainland-company-formation/dubai-mainland" onClick={closeAll} className="pl-3 text-sm text-slate-700">Dubai Mainland</Link>
