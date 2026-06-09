@@ -18,4 +18,92 @@ body {
     sans-serif;
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
+  background-color: #fff;
+  color: #1e0a0f;
+}
+
+/* ─── Brand tokens ─── */
+:root {
+  --maroon:        #3d0a14;
+  --maroon-dark:   #2d0710;
+  --maroon-light:  #5a1020;
+  --gold:          #C9A84C;
+  --gold-light:    #e0c070;
+  --gold-dark:     #a07830;
+}
+
+/* ─── Scrollbar ─── */
+::-webkit-scrollbar { width: 6px; }
+::-webkit-scrollbar-track { background: #f5f0e8; }
+::-webkit-scrollbar-thumb { background: var(--gold); border-radius: 99px; }
+::-webkit-scrollbar-thumb:hover { background: var(--gold-dark); }
+
+/* ─── Selection ─── */
+::selection {
+  background: var(--gold);
+  color: var(--maroon);
+}
+
+/* ─── Buttons ─── */
+@layer components {
+  .btn-primary {
+    @apply inline-block rounded-xl bg-amber-400 px-6 py-3 text-sm font-semibold text-[#3d0a14] shadow-md transition-all duration-200 hover:bg-amber-300 hover:shadow-lg active:scale-95;
+  }
+  .btn-outline {
+    @apply inline-block rounded-xl border-2 border-amber-400 px-6 py-3 text-sm font-semibold text-amber-400 transition-all duration-200 hover:bg-amber-400 hover:text-[#3d0a14] active:scale-95;
+  }
+  .btn-maroon {
+    @apply inline-block rounded-xl bg-[#3d0a14] px-6 py-3 text-sm font-semibold text-amber-400 shadow-md transition-all duration-200 hover:bg-[#5a1020] hover:shadow-lg active:scale-95;
+  }
+
+  /* ─── Cards ─── */
+  .card {
+    @apply rounded-2xl border border-amber-100 bg-white p-6 shadow-sm transition-all duration-200 hover:border-amber-300 hover:shadow-md;
+  }
+  .card-maroon {
+    @apply rounded-2xl bg-[#3d0a14] p-6 shadow-md transition-all duration-200 hover:bg-[#5a1020] hover:shadow-lg;
+  }
+
+  /* ─── Section headings ─── */
+  .section-title {
+    @apply text-3xl font-bold text-[#3d0a14] md:text-4xl;
+  }
+  .section-subtitle {
+    @apply text-lg text-slate-600;
+  }
+  .gold-underline {
+    @apply relative inline-block after:absolute after:-bottom-1 after:left-0 after:h-0.5 after:w-full after:bg-amber-400 after:content-[''];
+  }
+
+  /* ─── Hero section ─── */
+  .hero-bg {
+    background: linear-gradient(135deg, #3d0a14 0%, #5a1020 50%, #2d0710 100%);
+  }
+
+  /* ─── Gold divider ─── */
+  .gold-divider {
+    @apply h-px w-full bg-gradient-to-r from-transparent via-amber-400 to-transparent;
+  }
+
+  /* ─── Page section alternating ─── */
+  .section-light {
+    @apply bg-white py-16;
+  }
+  .section-muted {
+    @apply bg-amber-50/40 py-16;
+  }
+  .section-dark {
+    @apply bg-[#3d0a14] py-16 text-white;
+  }
+}
+
+/* ─── Smooth page transitions ─── */
+@layer utilities {
+  .fade-in {
+    animation: fadeIn 0.4s ease-out both;
+  }
+  @keyframes fadeIn {
+    from { opacity: 0; transform: translateY(12px); }
+    to   { opacity: 1; transform: translateY(0); }
+  }
 }
