@@ -99,7 +99,7 @@ export default function Navbar() {
 
             {businessOpen && (
               <div className="absolute left-1/2 top-full z-50 -translate-x-1/2 pt-2">
-                <div className="w-56 overflow-hidden rounded-2xl border border-amber-200 bg-white shadow-2xl">
+                <div className="w-56 overflow-visible rounded-2xl border border-amber-200 bg-white shadow-2xl">
                   <div style={goldBar} />
 
                   {/* Freezone */}
