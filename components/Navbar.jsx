@@ -128,7 +128,7 @@ export default function Navbar() {
                             </Link>
                             {dubaiOpen && (
                               <div className="absolute left-full top-0 z-50 pl-1">
-                                <div className="w-56 overflow-hidden rounded-2xl border border-amber-200 bg-white shadow-2xl">
+                                <div className="w-56 overflow-visible rounded-2xl border border-amber-200 bg-white shadow-2xl">
                                   <div style={goldBar} />
                                   {[
                                     ['JAFZA Freezone',           '/business-setup/freezone-company-formation/dubai-freezone/jafza-freezone'],
@@ -157,7 +157,7 @@ export default function Navbar() {
                             </Link>
                             {abuDhabiOpen && (
                               <div className="absolute left-full top-0 z-50 pl-1">
-                                <div className="w-64 overflow-hidden rounded-2xl border border-amber-200 bg-white shadow-2xl">
+                                <div className="w-56 overflow-visible rounded-2xl border border-amber-200 bg-white shadow-2xl">
                                   <div style={goldBar} />
                                   {[
                                     ['ADGM – Abu Dhabi Global Market', '/business-setup/freezone-company-formation/abu-dhabi-freezone/adgm-freezone'],
