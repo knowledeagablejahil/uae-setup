@@ -15,6 +15,16 @@ export default function Navbar() {
 
   const navRef = useRef(null);
 
+  // close all timers to prevent flicker
+  const closeTimers = useRef({});
+
+  function delayedClose(key, fn, delay = 150) {
+    closeTimers.current[key] = setTimeout(fn, delay);
+  }
+  function cancelClose(key) {
+    clearTimeout(closeTimers.current[key]);
+  }
+
   useEffect(() => {
     const onScroll = () => setScrolled(window.scrollY > 10);
     window.addEventListener('scroll', onScroll);
@@ -39,12 +49,18 @@ export default function Navbar() {
     setMobileOpen(false);
   }
 
+  const goldBar = { height: '4px', background: 'linear-gradient(to right, #C9A84C, #e0c070, #C9A84C)' };
+  const chevronR = (
+    <svg className="ml-auto h-4 w-4 shrink-0" fill="none" stroke="currentColor" strokeWidth={2} viewBox="0 0 24 24">
+      <path strokeLinecap="round" strokeLinejoin="round" d="M9 5l7 7-7 7" />
+    </svg>
+  );
+
   return (
     <nav
       ref={navRef}
       className={`sticky top-0 z-50 bg-[#3d0a14] transition-shadow duration-300 ${scrolled ? 'shadow-2xl' : 'shadow-lg'}`}
     >
-      {/* Gold top line */}
       <div style={{ height: '2px', background: 'linear-gradient(to right, transparent, #C9A84C, transparent)' }} />
 
       <div className="mx-auto flex max-w-7xl items-center justify-between px-6 py-4">
@@ -61,18 +77,18 @@ export default function Navbar() {
             Home
           </Link>
 
-          {/* Business Setup */}
+          {/* Business Setup — the key is pt-2 padding on the dropdown so there's no gap */}
           <div
             className="relative"
-            onMouseEnter={() => setBusinessOpen(true)}
-            onMouseLeave={() => {
+            onMouseEnter={() => { cancelClose('business'); setBusinessOpen(true); }}
+            onMouseLeave={() => delayedClose('business', () => {
               setBusinessOpen(false);
               setFreezeOpen(false);
               setDubaiOpen(false);
               setAbuDhabiOpen(false);
               setOffshoreOpen(false);
               setMainlandOpen(false);
-            }}
+            })}
           >
             <button className="flex items-center gap-1 text-sm font-medium text-white hover:text-amber-400 transition-colors duration-200">
               Business Setup
@@ -82,154 +98,149 @@ export default function Navbar() {
             </button>
 
             {businessOpen && (
-              <div className="absolute left-1/2 top-full z-50 mt-2 w-56 -translate-x-1/2 overflow-hidden rounded-2xl border border-amber-200 bg-white shadow-2xl">
-                <div style={{ height: '4px', background: 'linear-gradient(to right, #C9A84C, #e0c070, #C9A84C)' }} />
+              <div className="absolute left-1/2 top-full z-50 -translate-x-1/2 pt-2">
+                <div className="w-56 overflow-hidden rounded-2xl border border-amber-200 bg-white shadow-2xl">
+                  <div style={goldBar} />
 
-                {/* Freezone */}
-                <div
-                  className="relative"
-                  onMouseEnter={() => { setFreezeOpen(true); setOffshoreOpen(false); setMainlandOpen(false); }}
-                  onMouseLeave={() => { setFreezeOpen(false); setDubaiOpen(false); setAbuDhabiOpen(false); }}
-                >
-                  <button className="flex w-full items-center px-4 py-3 text-sm font-semibold text-[#3d0a14] hover:bg-amber-50 transition-colors duration-150">
-                    Freezone Company Formation
-                    <svg className="ml-auto h-4 w-4" fill="none" stroke="currentColor" strokeWidth={2} viewBox="0 0 24 24">
-                      <path strokeLinecap="round" strokeLinejoin="round" d="M9 5l7 7-7 7" />
-                    </svg>
-                  </button>
+                  {/* Freezone */}
+                  <div
+                    className="relative"
+                    onMouseEnter={() => { cancelClose('fz'); setFreezeOpen(true); setOffshoreOpen(false); setMainlandOpen(false); setDubaiOpen(false); setAbuDhabiOpen(false); }}
+                    onMouseLeave={() => delayedClose('fz', () => { setFreezeOpen(false); setDubaiOpen(false); setAbuDhabiOpen(false); })}
+                  >
+                    <button className="flex w-full items-center px-4 py-3 text-sm font-semibold text-[#3d0a14] hover:bg-amber-50 transition-colors duration-150">
+                      Freezone Company Formation {chevronR}
+                    </button>
 
-                  {freezoneOpen && (
-                    <div className="absolute left-full top-0 z-50 w-56 overflow-hidden rounded-2xl border border-amber-200 bg-white shadow-2xl">
-                      <div style={{ height: '4px', background: 'linear-gradient(to right, #C9A84C, #e0c070, #C9A84C)' }} />
+                    {freezoneOpen && (
+                      <div className="absolute left-full top-0 z-50 pl-1">
+                        <div className="w-56 overflow-hidden rounded-2xl border border-amber-200 bg-white shadow-2xl">
+                          <div style={goldBar} />
 
-                      {/* Dubai */}
-                      <div
-                        className="relative"
-                        onMouseEnter={() => setDubaiOpen(true)}
-                        onMouseLeave={() => setDubaiOpen(false)}
-                      >
-                        <Link href="/business-setup/freezone-company-formation/dubai-freezone" onClick={closeAll} className="flex w-full items-center px-4 py-3 text-sm font-semibold text-[#3d0a14] hover:bg-amber-50 transition-colors duration-150">
-                          Dubai Free Zone Overview
-                          <svg className="ml-auto h-4 w-4" fill="none" stroke="currentColor" strokeWidth={2} viewBox="0 0 24 24">
-                            <path strokeLinecap="round" strokeLinejoin="round" d="M9 5l7 7-7 7" />
-                          </svg>
-                        </Link>
-
-                        {dubaiOpen && (
-                          <div className="absolute left-full top-0 z-50 w-56 overflow-hidden rounded-2xl border border-amber-200 bg-white shadow-2xl">
-                            <div style={{ height: '4px', background: 'linear-gradient(to right, #C9A84C, #e0c070, #C9A84C)' }} />
-                            {[
-                              ['JAFZA Freezone',           '/business-setup/freezone-company-formation/dubai-freezone/jafza-freezone'],
-                              ['IFZA Freezone',            '/business-setup/freezone-company-formation/dubai-freezone/ifza-freezone'],
-                              ['DMCC Free Zone',           '/business-setup/freezone-company-formation/dubai-freezone/dmcc-freezone'],
-                              ['MEYDAN Freezone',          '/business-setup/freezone-company-formation/dubai-freezone/meydan-freezone'],
-                              ['Dubai World Trade Centre', '/business-setup/freezone-company-formation/dubai-freezone/dubai-world-trade-centre'],
-                              ['DIFC Free Zone',           '/business-setup/freezone-company-formation/dubai-freezone/difc-free-zone'],
-                              ['Dubai South Freezone',     '/business-setup/freezone-company-formation/dubai-freezone/dubai-south-freezone'],
-                            ].map(([label, href]) => (
-                              <Link key={href} href={href} onClick={closeAll} className="block px-4 py-2.5 text-sm text-slate-700 hover:bg-amber-50 hover:text-amber-800 transition-colors duration-150">{label}</Link>
-                            ))}
+                          {/* Dubai */}
+                          <div
+                            className="relative"
+                            onMouseEnter={() => { cancelClose('dxb'); setDubaiOpen(true); setAbuDhabiOpen(false); }}
+                            onMouseLeave={() => delayedClose('dxb', () => setDubaiOpen(false))}
+                          >
+                            <Link href="/business-setup/freezone-company-formation/dubai-freezone" onClick={closeAll} className="flex w-full items-center px-4 py-3 text-sm font-semibold text-[#3d0a14] hover:bg-amber-50 transition-colors duration-150">
+                              Dubai Free Zone Overview {chevronR}
+                            </Link>
+                            {dubaiOpen && (
+                              <div className="absolute left-full top-0 z-50 pl-1">
+                                <div className="w-56 overflow-hidden rounded-2xl border border-amber-200 bg-white shadow-2xl">
+                                  <div style={goldBar} />
+                                  {[
+                                    ['JAFZA Freezone',           '/business-setup/freezone-company-formation/dubai-freezone/jafza-freezone'],
+                                    ['IFZA Freezone',            '/business-setup/freezone-company-formation/dubai-freezone/ifza-freezone'],
+                                    ['DMCC Free Zone',           '/business-setup/freezone-company-formation/dubai-freezone/dmcc-freezone'],
+                                    ['MEYDAN Freezone',          '/business-setup/freezone-company-formation/dubai-freezone/meydan-freezone'],
+                                    ['Dubai World Trade Centre', '/business-setup/freezone-company-formation/dubai-freezone/dubai-world-trade-centre'],
+                                    ['DIFC Free Zone',           '/business-setup/freezone-company-formation/dubai-freezone/difc-free-zone'],
+                                    ['Dubai South Freezone',     '/business-setup/freezone-company-formation/dubai-freezone/dubai-south-freezone'],
+                                  ].map(([label, href]) => (
+                                    <Link key={href} href={href} onClick={closeAll} className="block px-4 py-2.5 text-sm text-slate-700 hover:bg-amber-50 hover:text-amber-800 transition-colors duration-150">{label}</Link>
+                                  ))}
+                                </div>
+                              </div>
+                            )}
                           </div>
-                        )}
-                      </div>
 
-                      {/* Abu Dhabi */}
-                      <div
-                        className="relative"
-                        onMouseEnter={() => setAbuDhabiOpen(true)}
-                        onMouseLeave={() => setAbuDhabiOpen(false)}
-                      >
-                        <Link href="/business-setup/freezone-company-formation/abu-dhabi-freezone" onClick={closeAll} className="flex w-full items-center px-4 py-3 text-sm font-semibold text-[#3d0a14] hover:bg-amber-50 transition-colors duration-150">
-                          Abu Dhabi Free Zone Overview
-                          <svg className="ml-auto h-4 w-4" fill="none" stroke="currentColor" strokeWidth={2} viewBox="0 0 24 24">
-                            <path strokeLinecap="round" strokeLinejoin="round" d="M9 5l7 7-7 7" />
-                          </svg>
-                        </Link>
-
-                        {abuDhabiOpen && (
-                          <div className="absolute left-full top-0 z-50 w-64 overflow-hidden rounded-2xl border border-amber-200 bg-white shadow-2xl">
-                            <div style={{ height: '4px', background: 'linear-gradient(to right, #C9A84C, #e0c070, #C9A84C)' }} />
-                            {[
-                              ['ADGM – Abu Dhabi Global Market', '/business-setup/freezone-company-formation/abu-dhabi-freezone/adgm-freezone'],
-                              ['KIZAD – Khalifa Industrial Zone', '/business-setup/freezone-company-formation/abu-dhabi-freezone/kizad-freezone'],
-                            ].map(([label, href]) => (
-                              <Link key={href} href={href} onClick={closeAll} className="block px-4 py-2.5 text-sm text-slate-700 hover:bg-amber-50 hover:text-amber-800 transition-colors duration-150">{label}</Link>
-                            ))}
+                          {/* Abu Dhabi */}
+                          <div
+                            className="relative"
+                            onMouseEnter={() => { cancelClose('ad'); setAbuDhabiOpen(true); setDubaiOpen(false); }}
+                            onMouseLeave={() => delayedClose('ad', () => setAbuDhabiOpen(false))}
+                          >
+                            <Link href="/business-setup/freezone-company-formation/abu-dhabi-freezone" onClick={closeAll} className="flex w-full items-center px-4 py-3 text-sm font-semibold text-[#3d0a14] hover:bg-amber-50 transition-colors duration-150">
+                              Abu Dhabi Free Zone Overview {chevronR}
+                            </Link>
+                            {abuDhabiOpen && (
+                              <div className="absolute left-full top-0 z-50 pl-1">
+                                <div className="w-64 overflow-hidden rounded-2xl border border-amber-200 bg-white shadow-2xl">
+                                  <div style={goldBar} />
+                                  {[
+                                    ['ADGM – Abu Dhabi Global Market', '/business-setup/freezone-company-formation/abu-dhabi-freezone/adgm-freezone'],
+                                    ['KIZAD – Khalifa Industrial Zone', '/business-setup/freezone-company-formation/abu-dhabi-freezone/kizad-freezone'],
+                                  ].map(([label, href]) => (
+                                    <Link key={href} href={href} onClick={closeAll} className="block px-4 py-2.5 text-sm text-slate-700 hover:bg-amber-50 hover:text-amber-800 transition-colors duration-150">{label}</Link>
+                                  ))}
+                                </div>
+                              </div>
+                            )}
                           </div>
-                        )}
+
+                          {/* General freezones */}
+                          <div style={{ borderTop: '1px solid #fde68a' }} />
+                          {[
+                            ['Ajman Freezone',         '/business-setup/freezone-company-formation/ajman-freezone'],
+                            ['Fujairah Creative City', '/business-setup/freezone-company-formation/fujairah-creative-city-freezone'],
+                            ['SHAMS Freezone',         '/business-setup/freezone-company-formation/shams-freezone'],
+                            ['RAKEZ Freezone',         '/business-setup/freezone-company-formation/rakez-freezone'],
+                          ].map(([label, href]) => (
+                            <Link key={href} href={href} onClick={closeAll} className="block px-4 py-2.5 text-sm text-slate-700 hover:bg-amber-50 hover:text-amber-800 transition-colors duration-150">{label}</Link>
+                          ))}
+                        </div>
                       </div>
+                    )}
+                  </div>
 
-                      {/* General freezones */}
-                      <div style={{ borderTop: '1px solid #fde68a' }} />
-                      {[
-                        ['Ajman Freezone',         '/business-setup/freezone-company-formation/ajman-freezone'],
-                        ['Fujairah Creative City', '/business-setup/freezone-company-formation/fujairah-creative-city-freezone'],
-                        ['SHAMS Freezone',         '/business-setup/freezone-company-formation/shams-freezone'],
-                        ['RAKEZ Freezone',         '/business-setup/freezone-company-formation/rakez-freezone'],
-                      ].map(([label, href]) => (
-                        <Link key={href} href={href} onClick={closeAll} className="block px-4 py-2.5 text-sm text-slate-700 hover:bg-amber-50 hover:text-amber-800 transition-colors duration-150">{label}</Link>
-                      ))}
-                    </div>
-                  )}
+                  {/* Offshore */}
+                  <div
+                    className="relative"
+                    onMouseEnter={() => { cancelClose('off'); setOffshoreOpen(true); setFreezeOpen(false); setMainlandOpen(false); setDubaiOpen(false); setAbuDhabiOpen(false); }}
+                    onMouseLeave={() => delayedClose('off', () => setOffshoreOpen(false))}
+                  >
+                    <button className="flex w-full items-center px-4 py-3 text-sm font-semibold text-[#3d0a14] hover:bg-amber-50 transition-colors duration-150">
+                      Offshore Company Formation {chevronR}
+                    </button>
+                    {offshoreOpen && (
+                      <div className="absolute left-full top-0 z-50 pl-1">
+                        <div className="w-56 overflow-hidden rounded-2xl border border-amber-200 bg-white shadow-2xl">
+                          <div style={goldBar} />
+                          {[
+                            ['Dubai Offshore (JAFZA)', '/business-setup/Offshore-company-formation/dubai-offshore'],
+                            ['RAK ICC Offshore',       '/business-setup/Offshore-company-formation/rak-icc-offshore'],
+                            ['Seychelles Offshore',    '/business-setup/Offshore-company-formation/seychelles-offshore'],
+                            ['Cyprus Offshore',        '/business-setup/Offshore-company-formation/cyprus-offshore'],
+                            ['Hong Kong Offshore',     '/business-setup/Offshore-company-formation/hong-kong-offshore'],
+                            ['BVI Offshore',           '/business-setup/Offshore-company-formation/bvi-offshore'],
+                            ['Ajman Offshore',         '/business-setup/Offshore-company-formation/ajman-offshore'],
+                          ].map(([label, href]) => (
+                            <Link key={href} href={href} onClick={closeAll} className="block px-4 py-2.5 text-sm text-slate-700 hover:bg-amber-50 hover:text-amber-800 transition-colors duration-150">{label}</Link>
+                          ))}
+                        </div>
+                      </div>
+                    )}
+                  </div>
+
+                  {/* Mainland */}
+                  <div
+                    className="relative"
+                    onMouseEnter={() => { cancelClose('ml'); setMainlandOpen(true); setFreezeOpen(false); setOffshoreOpen(false); setDubaiOpen(false); setAbuDhabiOpen(false); }}
+                    onMouseLeave={() => delayedClose('ml', () => setMainlandOpen(false))}
+                  >
+                    <button className="flex w-full items-center px-4 py-3 text-sm font-semibold text-[#3d0a14] hover:bg-amber-50 transition-colors duration-150">
+                      Mainland Company Formation {chevronR}
+                    </button>
+                    {mainlandOpen && (
+                      <div className="absolute left-full top-0 z-50 pl-1">
+                        <div className="w-56 overflow-hidden rounded-2xl border border-amber-200 bg-white shadow-2xl">
+                          <div style={goldBar} />
+                          {[
+                            ['Dubai Mainland',     '/business-setup/mainland-company-formation/dubai-mainland'],
+                            ['Abu Dhabi Mainland', '/business-setup/mainland-company-formation/abu-dhabi-mainland'],
+                            ['Ajman Mainland',     '/business-setup/mainland-company-formation/ajman-mainland'],
+                            ['Fujairah Mainland',  '/business-setup/mainland-company-formation/fujairah-mainland'],
+                          ].map(([label, href]) => (
+                            <Link key={href} href={href} onClick={closeAll} className="block px-4 py-2.5 text-sm text-slate-700 hover:bg-amber-50 hover:text-amber-800 transition-colors duration-150">{label}</Link>
+                          ))}
+                        </div>
+                      </div>
+                    )}
+                  </div>
+
                 </div>
-
-                {/* Offshore */}
-                <div
-                  className="relative"
-                  onMouseEnter={() => { setOffshoreOpen(true); setFreezeOpen(false); setMainlandOpen(false); setDubaiOpen(false); setAbuDhabiOpen(false); }}
-                  onMouseLeave={() => setOffshoreOpen(false)}
-                >
-                  <button className="flex w-full items-center px-4 py-3 text-sm font-semibold text-[#3d0a14] hover:bg-amber-50 transition-colors duration-150">
-                    Offshore Company Formation
-                    <svg className="ml-auto h-4 w-4" fill="none" stroke="currentColor" strokeWidth={2} viewBox="0 0 24 24">
-                      <path strokeLinecap="round" strokeLinejoin="round" d="M9 5l7 7-7 7" />
-                    </svg>
-                  </button>
-                  {offshoreOpen && (
-                    <div className="absolute left-full top-0 z-50 w-56 overflow-hidden rounded-2xl border border-amber-200 bg-white shadow-2xl">
-                      <div style={{ height: '4px', background: 'linear-gradient(to right, #C9A84C, #e0c070, #C9A84C)' }} />
-                      {[
-                        ['Dubai Offshore (JAFZA)', '/business-setup/Offshore-company-formation/dubai-offshore'],
-                        ['RAK ICC Offshore',       '/business-setup/Offshore-company-formation/rak-icc-offshore'],
-                        ['Seychelles Offshore',    '/business-setup/Offshore-company-formation/seychelles-offshore'],
-                        ['Cyprus Offshore',        '/business-setup/Offshore-company-formation/cyprus-offshore'],
-                        ['Hong Kong Offshore',     '/business-setup/Offshore-company-formation/hong-kong-offshore'],
-                        ['BVI Offshore',           '/business-setup/Offshore-company-formation/bvi-offshore'],
-                        ['Ajman Offshore',         '/business-setup/Offshore-company-formation/ajman-offshore'],
-                      ].map(([label, href]) => (
-                        <Link key={href} href={href} onClick={closeAll} className="block px-4 py-2.5 text-sm text-slate-700 hover:bg-amber-50 hover:text-amber-800 transition-colors duration-150">{label}</Link>
-                      ))}
-                    </div>
-                  )}
-                </div>
-
-                {/* Mainland */}
-                <div
-                  className="relative"
-                  onMouseEnter={() => { setMainlandOpen(true); setFreezeOpen(false); setOffshoreOpen(false); setDubaiOpen(false); setAbuDhabiOpen(false); }}
-                  onMouseLeave={() => setMainlandOpen(false)}
-                >
-                  <button className="flex w-full items-center px-4 py-3 text-sm font-semibold text-[#3d0a14] hover:bg-amber-50 transition-colors duration-150">
-                    Mainland Company Formation
-                    <svg className="ml-auto h-4 w-4" fill="none" stroke="currentColor" strokeWidth={2} viewBox="0 0 24 24">
-                      <path strokeLinecap="round" strokeLinejoin="round" d="M9 5l7 7-7 7" />
-                    </svg>
-                  </button>
-                  {mainlandOpen && (
-                    <div className="absolute left-full top-0 z-50 w-56 overflow-hidden rounded-2xl border border-amber-200 bg-white shadow-2xl">
-                      <div style={{ height: '4px', background: 'linear-gradient(to right, #C9A84C, #e0c070, #C9A84C)' }} />
-                      {[
-                        ['Dubai Mainland',     '/business-setup/mainland-company-formation/dubai-mainland'],
-                        ['Abu Dhabi Mainland', '/business-setup/mainland-company-formation/abu-dhabi-mainland'],
-                        ['Ajman Mainland',     '/business-setup/mainland-company-formation/ajman-mainland'],
-                        ['Fujairah Mainland',  '/business-setup/mainland-company-formation/fujairah-mainland'],
-                      ].map(([label, href]) => (
-                        <Link key={href} href={href} onClick={closeAll} className="block px-4 py-2.5 text-sm text-slate-700 hover:bg-amber-50 hover:text-amber-800 transition-colors duration-150">{label}</Link>
-                      ))}
-                    </div>
-                  )}
-                </div>
-
               </div>
             )}
           </div>
@@ -258,15 +269,13 @@ export default function Navbar() {
         </button>
       </div>
 
-      {/* Gold bottom line */}
       <div style={{ height: '1px', background: 'linear-gradient(to right, transparent, rgba(201,168,76,0.4), transparent)' }} />
 
       {/* Mobile menu */}
       {mobileOpen && (
-        <div className="border-t border-amber-400 bg-[#2d0710] px-6 py-5 md:hidden" style={{ borderTopColor: 'rgba(201,168,76,0.2)' }}>
+        <div className="bg-[#2d0710] px-6 py-5 md:hidden" style={{ borderTop: '1px solid rgba(201,168,76,0.2)' }}>
           <div className="flex flex-col gap-2.5">
             <Link href="/" onClick={closeAll} className="text-sm font-medium text-white hover:text-amber-400">Home</Link>
-
             {[
               { heading: 'Dubai Freezone', links: [
                 ['JAFZA',       '/business-setup/freezone-company-formation/dubai-freezone/jafza-freezone'],
@@ -304,13 +313,12 @@ export default function Navbar() {
               ]},
             ].map(({ heading, links }) => (
               <div key={heading}>
-                <p className="mb-1 mt-3 text-xs font-bold uppercase tracking-widest" style={{ color: 'rgba(201,168,76,0.6)' }}>{heading}</p>
+                <p className="mb-1 mt-3 text-xs font-bold uppercase tracking-widest" style={{ color: 'rgba(201,168,76,0.7)' }}>{heading}</p>
                 {links.map(([label, href]) => (
                   <Link key={href} href={href} onClick={closeAll} className="block py-1 pl-3 text-sm text-white hover:text-amber-400" style={{ opacity: 0.8 }}>{label}</Link>
                 ))}
               </div>
             ))}
-
             <Link href="/contact" onClick={closeAll} className="mt-3 text-sm font-medium text-white hover:text-amber-400">Contact Us</Link>
             <a href="https://wa.me/971503947208" target="_blank" rel="noopener noreferrer"
               className="mt-2 rounded-xl border-2 border-amber-400 bg-amber-400 px-5 py-3 text-center text-sm font-bold text-[#3d0a14]">
