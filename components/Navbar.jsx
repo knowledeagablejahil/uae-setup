@@ -113,8 +113,8 @@ export default function Navbar() {
                     </button>
 
                     {freezoneOpen && (
-                      <div className="absolute left-full top-0 z-50 pl-1">
-                        <div className="w-56 overflow-hidden rounded-2xl border border-amber-200 bg-white shadow-2xl">
+                      <div className="absolute left-full top-0 z-50">
+                        <div className="w-56 overflow-visible rounded-2xl border border-amber-200 bg-white shadow-2xl">
                           <div style={goldBar} />
 
                           {/* Dubai */}
@@ -127,7 +127,7 @@ export default function Navbar() {
                               Dubai Free Zone Overview {chevronR}
                             </Link>
                             {dubaiOpen && (
-                              <div className="absolute left-full top-0 z-50 pl-1">
+                              <div className="absolute left-full top-0 z-50">
                                 <div className="w-56 overflow-visible rounded-2xl border border-amber-200 bg-white shadow-2xl">
                                   <div style={goldBar} />
                                   {[
@@ -156,7 +156,7 @@ export default function Navbar() {
                               Abu Dhabi Free Zone Overview {chevronR}
                             </Link>
                             {abuDhabiOpen && (
-                              <div className="absolute left-full top-0 z-50 pl-1">
+                              <div className="absolute left-full top-0 z-50">
                                 <div className="w-56 overflow-visible rounded-2xl border border-amber-200 bg-white shadow-2xl">
                                   <div style={goldBar} />
                                   {[
