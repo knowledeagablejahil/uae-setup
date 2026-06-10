@@ -254,15 +254,15 @@ export default function FujairahCreativeCityFreezone() {
     <main className="min-h-screen bg-white">
 
       {/* Hero */}
-      <section className="bg-blue-600 py-20 text-white">
+      <section className="bg-gradient-to-br from-[#3d0a14] via-[#4a0d19] to-[#2d0710] py-20 text-white">
         <div className="mx-auto max-w-5xl px-6 text-center">
-          <p className="mb-3 text-sm font-semibold uppercase tracking-widest text-blue-200">
+          <p className="mb-3 text-sm font-semibold uppercase tracking-widest text-amber-200">
             UAE Freezone Formation
           </p>
           <h1 className="mb-6 text-4xl font-bold leading-tight md:text-5xl">
             Fujairah Creative City Free Zone
           </h1>
-          <p className="mx-auto mb-10 max-w-2xl text-lg text-blue-100">
+          <p className="mx-auto mb-10 max-w-2xl text-lg text-amber-100">
             The UAE's leading freezone for media, technology, and consultancy businesses — with
             100% foreign ownership, no capital requirement, and licenses issued in as little as
             2 to 3 working days.
@@ -271,7 +271,7 @@ export default function FujairahCreativeCityFreezone() {
             href="https://wa.me/971503947208"
             target="_blank"
             rel="noopener noreferrer"
-            className="inline-block rounded-xl bg-white px-8 py-4 text-base font-semibold text-blue-600 shadow-md transition hover:bg-blue-50"
+            className="inline-block rounded-xl bg-white px-8 py-4 text-base font-semibold text-[#C9A84C] shadow-md transition hover:bg-amber-50"
           >
             Get Started on WhatsApp
           </a>
@@ -281,7 +281,7 @@ export default function FujairahCreativeCityFreezone() {
       {/* Intro */}
       <section className="py-16">
         <div className="mx-auto max-w-4xl px-6 text-center">
-          <h2 className="mb-5 text-3xl font-bold text-slate-950">
+          <h2 className="mb-5 text-3xl font-bold text-[#3d0a14]">
             Why Choose Fujairah Creative City?
           </h2>
           <p className="text-lg leading-relaxed text-slate-700">
@@ -295,18 +295,18 @@ export default function FujairahCreativeCityFreezone() {
       </section>
 
       {/* Benefits */}
-      <section className="bg-slate-50 py-16">
+      <section className="bg-[#faf7f0] py-16">
         <div className="mx-auto max-w-6xl px-6">
-          <h2 className="mb-10 text-center text-3xl font-bold text-slate-950">
+          <h2 className="mb-10 text-center text-3xl font-bold text-[#3d0a14]">
             Key Benefits of FCC Registration
           </h2>
           <div className="grid gap-6 md:grid-cols-2 lg:grid-cols-3">
             {benefits.map((benefit) => (
               <div
                 key={benefit.title}
-                className="rounded-2xl border border-slate-200 bg-white p-6 shadow-sm"
+                className="rounded-2xl border border-amber-200 bg-white p-6 shadow-sm hover:border-[#C9A84C] transition-all duration-200"
               >
-                <h3 className="mb-3 text-lg font-semibold text-slate-950">{benefit.title}</h3>
+                <h3 className="mb-3 text-lg font-semibold text-[#3d0a14]">{benefit.title}</h3>
                 <p className="text-sm leading-relaxed text-slate-700">{benefit.description}</p>
               </div>
             ))}
@@ -317,7 +317,7 @@ export default function FujairahCreativeCityFreezone() {
       {/* Permitted Activities */}
       <section className="py-16">
         <div className="mx-auto max-w-6xl px-6">
-          <h2 className="mb-4 text-center text-3xl font-bold text-slate-950">
+          <h2 className="mb-4 text-center text-3xl font-bold text-[#3d0a14]">
             Permitted Business Activities
           </h2>
           <p className="mx-auto mb-10 max-w-2xl text-center text-slate-700">
@@ -327,9 +327,9 @@ export default function FujairahCreativeCityFreezone() {
             {activities.map((activity) => (
               <div
                 key={activity.title}
-                className="rounded-2xl border border-slate-200 bg-white p-6 shadow-sm"
+                className="rounded-2xl border border-amber-200 bg-white p-6 shadow-sm hover:border-[#C9A84C] transition-all duration-200"
               >
-                <h3 className="mb-2 text-base font-semibold text-blue-600">{activity.title}</h3>
+                <h3 className="mb-2 text-base font-semibold text-[#C9A84C]">{activity.title}</h3>
                 <p className="text-sm leading-relaxed text-slate-700">{activity.description}</p>
               </div>
             ))}
@@ -338,18 +338,18 @@ export default function FujairahCreativeCityFreezone() {
       </section>
 
       {/* Legal Entity Types */}
-      <section className="bg-slate-50 py-16">
+      <section className="bg-[#faf7f0] py-16">
         <div className="mx-auto max-w-5xl px-6">
-          <h2 className="mb-10 text-center text-3xl font-bold text-slate-950">
+          <h2 className="mb-10 text-center text-3xl font-bold text-[#3d0a14]">
             Types of Legal Structures in FCC
           </h2>
           <div className="grid gap-6 md:grid-cols-2">
             {entityTypes.map((entity) => (
               <div
                 key={entity.title}
-                className="rounded-2xl border border-slate-200 bg-white p-6 shadow-sm"
+                className="rounded-2xl border border-amber-200 bg-white p-6 shadow-sm hover:border-[#C9A84C] transition-all duration-200"
               >
-                <h3 className="mb-3 text-lg font-semibold text-slate-950">{entity.title}</h3>
+                <h3 className="mb-3 text-lg font-semibold text-[#3d0a14]">{entity.title}</h3>
                 <p className="text-sm leading-relaxed text-slate-700">{entity.description}</p>
               </div>
             ))}
@@ -360,16 +360,16 @@ export default function FujairahCreativeCityFreezone() {
       {/* License Types */}
       <section className="py-16">
         <div className="mx-auto max-w-5xl px-6">
-          <h2 className="mb-10 text-center text-3xl font-bold text-slate-950">
+          <h2 className="mb-10 text-center text-3xl font-bold text-[#3d0a14]">
             Types of Licenses Available
           </h2>
           <div className="grid gap-5 md:grid-cols-2 lg:grid-cols-3">
             {licenseTypes.map((license) => (
               <div
                 key={license.title}
-                className="rounded-2xl border border-slate-200 bg-white p-5 shadow-sm"
+                className="rounded-2xl border border-amber-200 bg-white p-5 shadow-sm hover:border-[#C9A84C] transition-all duration-200"
               >
-                <h3 className="mb-2 text-sm font-semibold text-blue-600">{license.title}</h3>
+                <h3 className="mb-2 text-sm font-semibold text-[#C9A84C]">{license.title}</h3>
                 <p className="text-sm leading-relaxed text-slate-700">{license.description}</p>
               </div>
             ))}
@@ -378,22 +378,22 @@ export default function FujairahCreativeCityFreezone() {
       </section>
 
       {/* Setup Process */}
-      <section className="bg-slate-50 py-16">
+      <section className="bg-[#faf7f0] py-16">
         <div className="mx-auto max-w-4xl px-6">
-          <h2 className="mb-10 text-center text-3xl font-bold text-slate-950">
+          <h2 className="mb-10 text-center text-3xl font-bold text-[#3d0a14]">
             Step-by-Step Setup Process
           </h2>
           <div className="space-y-6">
             {steps.map((step) => (
               <div
                 key={step.number}
-                className="flex gap-5 rounded-2xl border border-slate-200 bg-white p-6 shadow-sm"
+                className="flex gap-5 rounded-2xl border border-amber-200 bg-white p-6 shadow-sm hover:border-[#C9A84C] transition-all duration-200"
               >
-                <div className="flex h-10 w-10 shrink-0 items-center justify-center rounded-full bg-blue-600 text-sm font-bold text-white">
+                <div className="flex h-10 w-10 shrink-0 items-center justify-center rounded-full bg-gradient-to-br from-[#3d0a14] via-[#4a0d19] to-[#2d0710] text-sm font-bold text-white">
                   {step.number}
                 </div>
                 <div>
-                  <h3 className="mb-1 text-base font-semibold text-slate-950">{step.title}</h3>
+                  <h3 className="mb-1 text-base font-semibold text-[#3d0a14]">{step.title}</h3>
                   <p className="text-sm leading-relaxed text-slate-700">{step.description}</p>
                 </div>
               </div>
@@ -405,16 +405,16 @@ export default function FujairahCreativeCityFreezone() {
       {/* Documents Required */}
       <section className="py-16">
         <div className="mx-auto max-w-5xl px-6">
-          <h2 className="mb-10 text-center text-3xl font-bold text-slate-950">
+          <h2 className="mb-10 text-center text-3xl font-bold text-[#3d0a14]">
             Documents Required
           </h2>
           <div className="grid gap-5 md:grid-cols-2">
             {documents.map((doc) => (
               <div
                 key={doc.title}
-                className="rounded-2xl border border-slate-200 bg-white p-5 shadow-sm"
+                className="rounded-2xl border border-amber-200 bg-white p-5 shadow-sm hover:border-[#C9A84C] transition-all duration-200"
               >
-                <h3 className="mb-1 text-sm font-semibold text-slate-950">{doc.title}</h3>
+                <h3 className="mb-1 text-sm font-semibold text-[#3d0a14]">{doc.title}</h3>
                 <p className="text-sm leading-relaxed text-slate-700">{doc.description}</p>
               </div>
             ))}
@@ -423,9 +423,9 @@ export default function FujairahCreativeCityFreezone() {
       </section>
 
       {/* Why Elevate 360 */}
-      <section className="bg-slate-50 py-16">
+      <section className="bg-[#faf7f0] py-16">
         <div className="mx-auto max-w-4xl px-6 text-center">
-          <h2 className="mb-6 text-3xl font-bold text-slate-950">
+          <h2 className="mb-6 text-3xl font-bold text-[#3d0a14]">
             How Elevate 360 Supports Your FCC Setup
           </h2>
           <p className="mb-6 text-lg leading-relaxed text-slate-700">
@@ -443,16 +443,16 @@ export default function FujairahCreativeCityFreezone() {
       {/* FAQs */}
       <section className="py-16">
         <div className="mx-auto max-w-4xl px-6">
-          <h2 className="mb-10 text-center text-3xl font-bold text-slate-950">
+          <h2 className="mb-10 text-center text-3xl font-bold text-[#3d0a14]">
             Frequently Asked Questions
           </h2>
           <div className="space-y-5">
             {faqs.map((faq) => (
               <div
                 key={faq.question}
-                className="rounded-2xl border border-slate-200 bg-white p-6 shadow-sm"
+                className="rounded-2xl border border-amber-200 bg-white p-6 shadow-sm hover:border-[#C9A84C] transition-all duration-200"
               >
-                <h3 className="mb-2 text-base font-semibold text-slate-950">{faq.question}</h3>
+                <h3 className="mb-2 text-base font-semibold text-[#3d0a14]">{faq.question}</h3>
                 <p className="text-sm leading-relaxed text-slate-700">{faq.answer}</p>
               </div>
             ))}
@@ -461,12 +461,12 @@ export default function FujairahCreativeCityFreezone() {
       </section>
 
       {/* CTA */}
-      <section className="bg-blue-600 py-16 text-white">
+      <section className="bg-gradient-to-br from-[#3d0a14] via-[#4a0d19] to-[#2d0710] py-16 text-white">
         <div className="mx-auto max-w-3xl px-6 text-center">
           <h2 className="mb-4 text-3xl font-bold">
             Ready to Launch in Fujairah Creative City?
           </h2>
-          <p className="mb-8 text-lg text-blue-100">
+          <p className="mb-8 text-lg text-amber-100">
             Speak with an Elevate 360 advisor today. We'll guide you through the right license,
             structure, and package for your creative or consultancy business — from application
             to launch.
@@ -475,7 +475,7 @@ export default function FujairahCreativeCityFreezone() {
             href="https://wa.me/971503947208"
             target="_blank"
             rel="noopener noreferrer"
-            className="inline-block rounded-xl bg-white px-8 py-4 text-base font-semibold text-blue-600 shadow-md transition hover:bg-blue-50"
+            className="inline-block rounded-xl bg-white px-8 py-4 text-base font-semibold text-[#C9A84C] shadow-md transition hover:bg-amber-50"
           >
             Chat With Us on WhatsApp
           </a>

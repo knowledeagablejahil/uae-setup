@@ -152,18 +152,18 @@ export default function AbuDhabiFreeZoneOverview() {
     <div className="min-h-screen bg-white">
 
       {/* Hero */}
-      <section className="bg-blue-600 py-20 text-white text-center px-4">
+      <section className="bg-gradient-to-br from-[#3d0a14] via-[#4a0d19] to-[#2d0710] py-20 text-white text-center px-4">
         <div className="max-w-4xl mx-auto">
-          <p className="text-blue-200 uppercase tracking-widest text-sm font-semibold mb-4">Business Setup</p>
+          <p className="text-amber-200 uppercase tracking-widest text-sm font-semibold mb-4">Business Setup</p>
           <h1 className="text-4xl md:text-5xl font-bold mb-6 leading-tight">Abu Dhabi Free Zone Business Setup</h1>
-          <p className="text-xl text-blue-100 mb-8 max-w-2xl mx-auto leading-relaxed">
+          <p className="text-xl text-amber-100 mb-8 max-w-2xl mx-auto leading-relaxed">
             The capital's free zones are redefining international business expansion — with world-class infrastructure, sector-specific ecosystems, and 100% foreign ownership.
           </p>
           <a
             href={whatsapp}
             target="_blank"
             rel="noopener noreferrer"
-            className="inline-block bg-white text-blue-600 font-semibold px-8 py-3 rounded-xl hover:bg-blue-50 transition-colors"
+            className="inline-block bg-white text-[#C9A84C] font-semibold px-8 py-3 rounded-xl hover:bg-amber-50 transition-colors"
           >
             Get Started Today
           </a>
@@ -171,19 +171,19 @@ export default function AbuDhabiFreeZoneOverview() {
       </section>
 
       {/* Legal Entity Options */}
-      <section className="py-20 px-4 bg-slate-50">
+      <section className="py-20 px-4 bg-[#faf7f0]">
         <div className="max-w-5xl mx-auto">
           <div className="text-center mb-12">
-            <h2 className="text-3xl font-bold text-slate-950 mb-3">Navigating Setup in Abu Dhabi Free Zones</h2>
-            <p className="text-blue-600 font-semibold text-lg">Legal Entity Options</p>
+            <h2 className="text-3xl font-bold text-[#3d0a14] mb-3">Navigating Setup in Abu Dhabi Free Zones</h2>
+            <p className="text-[#C9A84C] font-semibold text-lg">Legal Entity Options</p>
           </div>
           <div className="grid grid-cols-1 md:grid-cols-3 gap-6">
             {entityTypes.map((e) => (
-              <div key={e.title} className="rounded-2xl border border-slate-200 bg-white p-6 shadow-sm text-center">
-                <div className="w-12 h-12 rounded-full bg-blue-50 flex items-center justify-center mx-auto mb-4">
-                  <div className="w-5 h-5 bg-blue-600 rounded-sm" />
+              <div key={e.title} className="rounded-2xl border border-amber-200 bg-white p-6 shadow-sm hover:border-[#C9A84C] transition-all duration-200 text-center">
+                <div className="w-12 h-12 rounded-full bg-amber-50 flex items-center justify-center mx-auto mb-4">
+                  <div className="w-5 h-5 bg-gradient-to-br from-[#3d0a14] via-[#4a0d19] to-[#2d0710] rounded-sm" />
                 </div>
-                <h3 className="text-base font-semibold text-slate-950 mb-2">{e.title}</h3>
+                <h3 className="text-base font-semibold text-[#3d0a14] mb-2">{e.title}</h3>
                 <p className="text-slate-600 text-sm leading-relaxed">{e.desc}</p>
               </div>
             ))}
@@ -195,13 +195,13 @@ export default function AbuDhabiFreeZoneOverview() {
       <section className="py-20 px-4">
         <div className="max-w-6xl mx-auto">
           <div className="text-center mb-12">
-            <h2 className="text-3xl font-bold text-slate-950 mb-3">Available Licenses by Activity</h2>
+            <h2 className="text-3xl font-bold text-[#3d0a14] mb-3">Available Licenses by Activity</h2>
             <p className="text-slate-600 max-w-xl mx-auto">Abu Dhabi's free zones support a broad spectrum of business activities across sectors — from finance and industry to media and green tech.</p>
           </div>
           <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-5">
             {licenses.map((l) => (
-              <div key={l.title} className="rounded-2xl border border-slate-200 bg-white p-5 shadow-sm flex gap-4 items-start">
-                <div className="w-2 h-2 rounded-full bg-blue-600 mt-2 flex-shrink-0" />
+              <div key={l.title} className="rounded-2xl border border-amber-200 bg-white p-5 shadow-sm hover:border-[#C9A84C] transition-all duration-200 flex gap-4 items-start">
+                <div className="w-2 h-2 rounded-full bg-gradient-to-br from-[#3d0a14] via-[#4a0d19] to-[#2d0710] mt-2 flex-shrink-0" />
                 <div>
                   <h3 className="font-semibold text-slate-950 mb-1 text-sm">{l.title}</h3>
                   <p className="text-slate-600 text-sm leading-relaxed">{l.desc}</p>
@@ -213,20 +213,20 @@ export default function AbuDhabiFreeZoneOverview() {
       </section>
 
       {/* Step-by-Step Process */}
-      <section className="py-20 px-4 bg-slate-50">
+      <section className="py-20 px-4 bg-[#faf7f0]">
         <div className="max-w-5xl mx-auto">
           <div className="text-center mb-14">
-            <h2 className="text-3xl font-bold text-slate-950 mb-3">Step-by-Step Company Formation Process</h2>
+            <h2 className="text-3xl font-bold text-[#3d0a14] mb-3">Step-by-Step Company Formation Process</h2>
             <p className="text-slate-600 max-w-xl mx-auto">Our structured process ensures your Abu Dhabi free zone company is operational with minimal delays and maximum clarity.</p>
           </div>
           <div className="space-y-5">
             {steps.map((s) => (
-              <div key={s.number} className="rounded-2xl border border-slate-200 bg-white p-6 shadow-sm flex gap-5 items-start">
-                <div className="w-10 h-10 rounded-full bg-blue-600 flex items-center justify-center text-white font-bold text-sm flex-shrink-0">
+              <div key={s.number} className="rounded-2xl border border-amber-200 bg-white p-6 shadow-sm hover:border-[#C9A84C] transition-all duration-200 flex gap-5 items-start">
+                <div className="w-10 h-10 rounded-full bg-gradient-to-br from-[#3d0a14] via-[#4a0d19] to-[#2d0710] flex items-center justify-center text-white font-bold text-sm flex-shrink-0">
                   {s.number}
                 </div>
                 <div>
-                  <h3 className="text-base font-semibold text-slate-950 mb-1">{s.title}</h3>
+                  <h3 className="text-base font-semibold text-[#3d0a14] mb-1">{s.title}</h3>
                   <p className="text-slate-600 text-sm leading-relaxed">{s.desc}</p>
                 </div>
               </div>
@@ -239,24 +239,24 @@ export default function AbuDhabiFreeZoneOverview() {
       <section className="py-20 px-4">
         <div className="max-w-6xl mx-auto">
           <div className="text-center mb-14">
-            <h2 className="text-3xl font-bold text-slate-950 mb-3">Key Abu Dhabi Free Zones to Explore</h2>
+            <h2 className="text-3xl font-bold text-[#3d0a14] mb-3">Key Abu Dhabi Free Zones to Explore</h2>
             <p className="text-slate-600 max-w-xl mx-auto">Each Abu Dhabi free zone is purpose-built for specific industries. We help you identify the right match for your business model.</p>
           </div>
           <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
             {zones.map((z) => (
-              <div key={z.name} className="rounded-2xl border border-slate-200 bg-white p-6 shadow-sm flex flex-col justify-between">
+              <div key={z.name} className="rounded-2xl border border-amber-200 bg-white p-6 shadow-sm hover:border-[#C9A84C] transition-all duration-200 flex flex-col justify-between">
                 <div>
-                  <div className="inline-block bg-blue-600 text-white text-xs font-bold px-3 py-1 rounded-full mb-3">
+                  <div className="inline-block bg-gradient-to-br from-[#3d0a14] via-[#4a0d19] to-[#2d0710] text-white text-xs font-bold px-3 py-1 rounded-full mb-3">
                     {z.name}
                   </div>
-                  <h3 className="text-lg font-semibold text-slate-950 mb-2">{z.full}</h3>
+                  <h3 className="text-lg font-semibold text-[#3d0a14] mb-2">{z.full}</h3>
                   <p className="text-slate-600 text-sm leading-relaxed mb-4">{z.desc}</p>
                 </div>
                 <a
                   href={whatsapp}
                   target="_blank"
                   rel="noopener noreferrer"
-                  className="text-blue-600 text-sm font-semibold hover:underline"
+                  className="text-[#C9A84C] text-sm font-semibold hover:underline"
                 >
                   Enquire Now →
                 </a>
@@ -267,10 +267,10 @@ export default function AbuDhabiFreeZoneOverview() {
       </section>
 
       {/* How Elevate 360 Helps */}
-      <section className="py-20 px-4 bg-slate-50">
+      <section className="py-20 px-4 bg-[#faf7f0]">
         <div className="max-w-6xl mx-auto">
           <div className="text-center mb-6">
-            <h2 className="text-3xl font-bold text-slate-950 mb-3">How Elevate 360 Helps</h2>
+            <h2 className="text-3xl font-bold text-[#3d0a14] mb-3">How Elevate 360 Helps</h2>
             <p className="text-slate-600 max-w-2xl mx-auto">
               Elevate 360 simplifies every step of your Abu Dhabi business formation journey — from initial planning to long-term operational support. We're not just consultants; we're your on-ground execution partners with deep expertise in UAE legal, regulatory, and commercial frameworks.
             </p>
@@ -283,9 +283,9 @@ export default function AbuDhabiFreeZoneOverview() {
           </div>
           <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
             {whyUs.map((w) => (
-              <div key={w.title} className="rounded-2xl border border-slate-200 bg-white p-6 shadow-sm text-center">
-                <div className="w-10 h-10 rounded-full bg-blue-100 flex items-center justify-center mx-auto mb-4">
-                  <div className="w-4 h-4 bg-blue-600 rounded-full" />
+              <div key={w.title} className="rounded-2xl border border-amber-200 bg-white p-6 shadow-sm hover:border-[#C9A84C] transition-all duration-200 text-center">
+                <div className="w-10 h-10 rounded-full bg-amber-100 flex items-center justify-center mx-auto mb-4">
+                  <div className="w-4 h-4 bg-gradient-to-br from-[#3d0a14] via-[#4a0d19] to-[#2d0710] rounded-full" />
                 </div>
                 <h3 className="font-semibold text-slate-950 mb-2">{w.title}</h3>
                 <p className="text-slate-600 text-sm leading-relaxed">{w.desc}</p>
@@ -299,12 +299,12 @@ export default function AbuDhabiFreeZoneOverview() {
       <section className="py-20 px-4">
         <div className="max-w-3xl mx-auto">
           <div className="text-center mb-12">
-            <h2 className="text-3xl font-bold text-slate-950 mb-3">FAQs — Abu Dhabi Free Zone Setup</h2>
+            <h2 className="text-3xl font-bold text-[#3d0a14] mb-3">FAQs — Abu Dhabi Free Zone Setup</h2>
             <p className="text-slate-600">Common questions from entrepreneurs exploring Abu Dhabi's free zone options.</p>
           </div>
           <div className="space-y-4">
             {faqs.map((f) => (
-              <div key={f.q} className="rounded-2xl border border-slate-200 bg-white p-6 shadow-sm">
+              <div key={f.q} className="rounded-2xl border border-amber-200 bg-white p-6 shadow-sm hover:border-[#C9A84C] transition-all duration-200">
                 <h3 className="font-semibold text-slate-950 mb-2">{f.q}</h3>
                 <p className="text-slate-600 text-sm leading-relaxed">{f.a}</p>
               </div>
@@ -314,17 +314,17 @@ export default function AbuDhabiFreeZoneOverview() {
       </section>
 
       {/* CTA */}
-      <section className="bg-blue-600 py-16 text-white text-center px-4">
+      <section className="bg-gradient-to-br from-[#3d0a14] via-[#4a0d19] to-[#2d0710] py-16 text-white text-center px-4">
         <div className="max-w-2xl mx-auto">
           <h2 className="text-3xl font-bold mb-4">Ready to Set Up in Abu Dhabi?</h2>
-          <p className="text-blue-100 mb-8 text-lg">
+          <p className="text-amber-100 mb-8 text-lg">
             Speak with our specialists today. We'll match you with the right Abu Dhabi free zone and guide you through every step.
           </p>
           <a
             href={whatsapp}
             target="_blank"
             rel="noopener noreferrer"
-            className="inline-block bg-white text-blue-600 font-semibold px-10 py-3 rounded-xl hover:bg-blue-50 transition-colors"
+            className="inline-block bg-white text-[#C9A84C] font-semibold px-10 py-3 rounded-xl hover:bg-amber-50 transition-colors"
           >
             WhatsApp Us Now
           </a>
