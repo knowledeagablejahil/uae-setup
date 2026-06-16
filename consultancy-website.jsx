@@ -59,6 +59,24 @@ export default function ConsultancyWebsite() {
       price: pricing.bank.base,
       time: pricing.bank.time,
       ideal: 'All business types'
+    },
+    {
+      id: 'vat',
+      title: 'VAT & Accounting',
+      description: 'Compliance and financial management',
+      features: ['VAT registration & filing', 'Bookkeeping & audit', 'Tax optimization'],
+      price: pricing.vat.base,
+      time: pricing.vat.time,
+      ideal: 'Established companies'
+    },
+    {
+      id: 'visa',
+      title: 'Golden Visa Support',
+      description: 'Long-term residency program',
+      features: ['10-year residency', 'Family sponsorship', 'Real estate investment option'],
+      price: pricing.visa.base,
+      time: pricing.visa.time,
+      ideal: 'High-net-worth individuals'
     }
   ];
 
